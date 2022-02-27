@@ -10,6 +10,11 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;
     font-family: 'Work Sans', sans-serif;
+    background-color: #f8f9fa;
   }
 
+  :root {
+    --primary-color: #EAE0D5;
+    --secondary-color: #22333B;
+  }
 `;
