@@ -14,7 +14,15 @@ export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   width: 25%;
+  @media(max-width: 600px) {
+    display: none;
+  }
 `
+
+// export const ToggleBugger = styled.div`
+//   width: 50px;
+//   height: 50px;
+// `
 
 export const NavItem = styled.li`
   a {
