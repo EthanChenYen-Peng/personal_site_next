@@ -17,7 +17,10 @@ export const StyledNav = styled.nav`
 `
 
 export const NavItem = styled.li`
-  text-decoration: none;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
   list-style-type: none;
   position: relative;
 
