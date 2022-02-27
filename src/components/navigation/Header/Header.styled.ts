@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled from "styled-components";
+import { sizes } from '@/utils/constants'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -8,21 +9,29 @@ export const Wrapper = styled.div`
   padding: 0 5rem;
   background-color: var(--primary-color);
   color: var(--secondary-color);
+
+  @media (max-width: ${sizes.sm}) {
+    padding: 0 2rem;
+  }
+`;
+
+export const ToggleBuggerContainer = styled.div`
+  display: none;
+  @media (max-width: ${sizes.sm}) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `
 
 export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   width: 25%;
-  @media(max-width: 600px) {
+  @media (max-width: ${sizes.sm}) {
     display: none;
   }
-`
-
-// export const ToggleBugger = styled.div`
-//   width: 50px;
-//   height: 50px;
-// `
+`;
 
 export const NavItem = styled.li`
   a {
@@ -33,7 +42,7 @@ export const NavItem = styled.li`
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: 0;
@@ -49,4 +58,11 @@ export const NavItem = styled.li`
       width: 100%;
     }
   }
-`
+
+  @media (max-width: ${sizes.sm}) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+`;

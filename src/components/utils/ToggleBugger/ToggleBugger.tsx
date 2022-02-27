@@ -1,12 +1,12 @@
-import { useState } from 'react'
 import { Wrapper } from "./ToggleBugger.styled";
-function ToggleBugger() {
-  const [open, setOpen] = useState(false)
-  const handleClick = () => {
-    setOpen(!open)
-  }
+
+interface Props {
+  open: Boolean;
+  onClick: Function;
+}
+function ToggleBugger({ open, onClick }: Props) {
   return (
-    <Wrapper open={open} onClick={handleClick}>
+    <Wrapper open={open} onClick={() => onClick()}>
       <span></span>
       <span></span>
       <span></span>

@@ -8,7 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
   html, body {
-    height: 100%;
+    overflow: hidden;
+    height: 100vh;
     font-family: 'Work Sans', sans-serif;
     background-color: #f8f9fa;
   }

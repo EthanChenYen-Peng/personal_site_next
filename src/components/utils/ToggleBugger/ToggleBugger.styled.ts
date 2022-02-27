@@ -1,13 +1,18 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
+interface IWrapper {
+  open: Boolean
+}
+
+const rotateAngle = "33deg"
+export const Wrapper = styled.div<IWrapper>`
   position: relative;
   width: 33px;
   & > span {
     &::before {
       position: absolute;
       content: '';
-      height: 3px;
+      height: 4px;
       width: 100%;
       background-color: var(--secondary-color);
       transition: all 0.4s;
@@ -16,19 +21,20 @@ export const Wrapper = styled.div`
 
   & > span:nth-of-type(1) {
     &::before {
-      transform: ${props => props.open ? "rotate(39deg)" : ""} ;
-       transform-origin:  left;
-    }
-  }
-  & > span + span {
-    &::before {
-      transform: translateY(10px);
+      transform: ${props => props.open ? `rotate(${rotateAngle}) translateY(-10px)` : "translateY(-10px)"} ;
+     transform-origin:  left;
     }
   }
 
-  & > span + span + span {
+  & > span:nth-of-type(2) {
     &::before {
-      transform: ${props => props.open ? "translateY(20px) rotate(-39deg)" : "translateY(20px)"} ;
+      width: ${ props => props.open ? "0%" : "100%"}
+    }
+  }
+
+  & > span:nth-of-type(3) {
+    &::before {
+      transform: ${props => props.open ? `rotate(-${rotateAngle}) translateY(10px)` : "translateY(10px)"} ;
      transform-origin:  left;
     }
   }
