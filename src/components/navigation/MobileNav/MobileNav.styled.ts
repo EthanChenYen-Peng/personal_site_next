@@ -3,6 +3,7 @@ import { sizes } from '@/utils/constants'
 
 export const Wrapper = styled.div`
   display: none;
+
   @media (max-width: ${sizes.sm}) {
     display: block;
     position: fixed;
@@ -25,6 +26,8 @@ export const Wrapper = styled.div`
 
 export const Overlay = styled.div`
   display: none;
+  position: relative;
+  z-index: 1;
   @media (max-width: ${sizes.sm}) {
     display: block;
     background-color: rgba(90, 90, 90, 0.6);

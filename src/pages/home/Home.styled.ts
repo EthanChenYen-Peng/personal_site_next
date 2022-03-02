@@ -13,6 +13,7 @@ export const HeroContainer = styled.div`
   font-size: 4rem;
   padding: 5rem 7rem;
 
+  isolation: isolate;
   h2:nth-of-type(2) {
     transform: translateX(200px);
     margin-top: 2rem;
