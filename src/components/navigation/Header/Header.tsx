@@ -28,7 +28,9 @@ export default function Header() {
           <NavItem>
             <Link href="/about">About</Link>
           </NavItem>
-          <NavItem>Project</NavItem>
+          <NavItem>
+            <Link href="/projects">Project</Link>
+          </NavItem>
           <NavItem>Blog</NavItem>
         </StyledNav>
       </Wrapper>
@@ -40,12 +42,12 @@ export default function Header() {
           <Link href="/about">About</Link>
         </NavItem>
         <NavItem>
-          <Link href="/about">Project</Link>
+          <Link href="/projects">Project</Link>
         </NavItem>
         <NavItem>
           <Link href="/about">Blog</Link>
         </NavItem>
       </MobileNav>
-      </>
+    </>
   );
 }
