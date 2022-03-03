@@ -5,8 +5,6 @@ export const Container = styled.div`
   background-color: var(--secondary-color);
   color: var(--primary-color);
   min-height: 100vh;
-
-
 `
 
 export const HeroContainer = styled.div`

@@ -1,21 +1,19 @@
 import  Link from 'next/link'
+import { Wrapper, StyledHeader } from './Project.styled'
 import { getAllPosts, PostMeta } from '@/api/posts';
+import PostCard from '@/components/blog/PostCard'
+
 interface Props {
   posts: PostMeta[]
 }
 function Projects({posts}: Props) {
   return (
-    <div>Projects
-     <ul>
-     </ul>
+    <Wrapper>
+      <StyledHeader>Projects</StyledHeader>
       {posts.map((post)=> (
-       <li>
-          <Link href={`/projects/${post.slug}`} >
-            {post.title}
-          </Link>
-        </li>
+        <PostCard />
       ))}
-    </div>
+    </Wrapper>
   )
 }
 
