@@ -28,7 +28,7 @@ export const getAllPosts = () => {
   return posts;
 };
 
-interface Post {
+export interface Post {
   content: string;
   meta: PostMeta;
 }
@@ -43,6 +43,9 @@ export interface PostMeta {
 
 export const getPostFromSlug = (slug: string): Post => {
   const postPath = path.join(POSTS_PATH, `${slug}.mdx`);
+  console.log('slug')
+  console.log(slug)
+  console.log(postPath)
   const source = fs.readFileSync(postPath);
   const { content, data } = matter(source);
 

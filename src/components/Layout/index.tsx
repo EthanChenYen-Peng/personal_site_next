@@ -1,6 +1,10 @@
 import Header from "@/components/navigation/Header";
 import { GlobalStyle } from "./Layout.styled";
-function Layout({children}) {
+
+interface Props {
+  children: any
+}
+function Layout({children}: Props) {
   return (
     <>
       <GlobalStyle />
