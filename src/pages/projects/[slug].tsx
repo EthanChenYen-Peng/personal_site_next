@@ -20,14 +20,13 @@ interface Props {
 
 const componentsForMarkdownDisplay = { Image }
 export default function Post({ post }: Props){
-  console.log(post.source)
 
   return (
     <>
-    <div>Post page {post.meta.title}</div>
+      <div>Post page {post.meta.title}</div>
     <MDXRemote {...post.source} components={componentsForMarkdownDisplay}/>
-  </>
-  )
+    </>
+    )
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -48,7 +47,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getSlugs().map((slug) => ({ params: { slug } }));
-  console.log(paths)
 
   return {
     paths,
