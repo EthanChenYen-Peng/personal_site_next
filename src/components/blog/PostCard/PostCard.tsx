@@ -13,7 +13,7 @@ interface Props {
   post: PostMeta;
 }
 function PostCard({ post }: Props) {
-  const handleProjectLinkClick = (e) => {
+  const handleProjectLinkClick = (e: Event) => {
     e.stopPropagation();
   };
   return (

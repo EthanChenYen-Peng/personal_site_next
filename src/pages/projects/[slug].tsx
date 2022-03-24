@@ -5,9 +5,9 @@ import { serialize } from "next-mdx-remote/serialize";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeHighlight from "rehype-highlight";
-import {getPostFromSlug, getSlugs, PostMeta} from '@/api/posts'
+import { getPostFromSlug, getSlugs, PostMeta } from "@/api/posts";
 import "highlight.js/styles/hybrid.css";
-
+import { Container } from "./Project.styled";
 
 interface MDXPost {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -15,18 +15,30 @@ interface MDXPost {
 }
 
 interface Props {
-  post: MDXPost
+  post: MDXPost;
 }
 
-const componentsForMarkdownDisplay = { Image }
-export default function Post({ post }: Props){
-
+function CenteredImage(src) {
   return (
-    <>
-      <div>Post page {post.meta.title}</div>
-    <MDXRemote {...post.source} components={componentsForMarkdownDisplay}/>
-    </>
-    )
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        margin: "2rem 0",
+      }}
+    >
+      <Image src={src} objectFit="cover" width={700} height={500} />
+    </div>
+  );
+}
+const componentsForMarkdownDisplay = { CenteredImage };
+
+export default function Post({ post }: Props) {
+  return (
+    <Container>
+      <MDXRemote {...post.source} components={componentsForMarkdownDisplay} />
+    </Container>
+  );
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

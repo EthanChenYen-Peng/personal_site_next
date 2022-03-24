@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Wrapper, Container, StyledHeader } from "./Project.styled";
+import { Wrapper, Container, StyledHeader } from "./Projects.styled";
 import { getAllPosts, PostMeta } from "@/api/posts";
 import PostCard from "@/components/blog/PostCard";
 
@@ -21,7 +21,6 @@ export async function getStaticProps() {
   const posts = getAllPosts()
     .slice(0, 9)
     .map((post) => post.meta);
-  console.log(posts);
 
   return { props: { posts } };
 }
