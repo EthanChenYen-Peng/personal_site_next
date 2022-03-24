@@ -1,0 +1,151 @@
+---
+title: MERN twitter clone
+excerpt: "CRUD + Real-time chat : A social network clone."
+created: 2020-07-22T07:27:03.714Z
+tags:
+  - MERN
+  - React
+  - Express
+  - NodeJS
+  - Real-time chat
+image: /images/mern-twitter.png
+project_url: https://mern-twitter.netlify.app
+---
+## Project URL
+<https://mern-twitter.netlify.app>
+## Github links
+Backend API : <https://github.com/EthanChenYen-Peng/mern_twitter_clone_backend>
+
+Frontend : <https://github.com/EthanChenYen-Peng/mern_twitter_clone_frontend>
+## Introduction
+
+This is meant to be a clone of a typical social network website. Originally I was thinking of building an Instagram clone, but later realize that Twitter has a much nicer user interface. Comparing to my previous MERN app (todo list), it is much more complicated in terms of both functionality and UI design. Additionally, to make it more than a just glorified version CRUD application and to distinguish to my previous app, I implemented a real-time chat functionality using Socket io.
+
+## Technologies
+
+### Frontend
+
+- React JS : SPA app.
+- React router : Page routing for SPA app.
+- Redux : State management.
+- SCSS : Styling.
+- Netlify : Deployment of static assets.
+
+### Backend (API)
+
+- Express JS : Lightweight backend framework.
+- JSON web token : For stateless authentication.
+- Mongoose : Object relational mapper ( Provide an easier interface for CRUD operations on MongoDB).
+- MongoDB : Document database.
+- Socket io : To implement real-time communication.
+- Digital ocean : For server deployment. (Using Nginx as reverse proxy).
+
+## What I have learned from the project
+
+1. Setting up multiple layout files using a pattern of higher-order component is particularly interesting. Below is the code snippet.
+I essential pass the component to be rendered and the layout component to be used as parameters to the wrapper component AppRoute, it then checks whether or not the user is authenticated and whether or not need to redirect the user to the login page.
+```jsx
+const AppRoute = ({
+  component: Component, layout: Layout, isPrivate = true, ...rest
+}) => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!isAuthenticated) {
+      dispatch(loadUser());
+    }
+  }, []);
+
+  const appRoute = (
+    <Route
+      {...rest}
+      render={(props) => (isPrivate && !isAuthenticated
+        ? (
+          <Redirect to="/login" />
+        )
+        : (
+          <Layout>
+            <Component {...props} />
+          </Layout>
+        ))}
+    />
+  );
+  const spinner = (
+    <div className="spinner">
+      <ClipLoader
+        size={150}
+        color="#1B91DA"
+      />
+    </div>
+  );
+  return (
+    isLoading
+      ? spinner
+      : appRoute
+  );
+};
+```
+
+```jsx
+
+// App.js
+function App() {
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <div className="app">
+          <Alert />
+          <Switch>
+            <AppRoute
+              path="/"
+              exact
+              component={Home}
+              layout={MainLayout}
+            />
+            <AppRoute
+              path="/register"
+              exact
+              component={Register}
+              isPrivate={false}
+              layout={AuthLayout}
+            />
+            <AppRoute
+              path="/login"
+              exact
+              component={Login}
+              isPrivate={false}
+              layout={AuthLayout}
+            />
+
+            <AppRoute
+              path="/messages"
+              exact
+              component={Messages}
+              layout={MainLayout} />
+            <AppRoute
+              path="/messages/:userTwoId"
+              exact
+              component={ChatRoom}
+              layout={MainLayout} />
+            <AppRoute
+              path="/profile/edit"
+              exact
+              component={ProfileEdit}
+              layout={MainLayout} />
+            <AppRoute p
+              ath="/profile/:userName"
+              component={Profile}
+              layout={MainLayout} />
+            <AppRoute
+              path="/:userName/status/:id"
+              component={Tweet}
+              layout={MainLayout} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </Provider>
+  );
+}
+```
+2. Chat-room functionality. In contrast to the request and response cycle in HTTP, WebSocket is stateful, that is, the server is aware of the client and can push data to the client from the without an initial request from the client.

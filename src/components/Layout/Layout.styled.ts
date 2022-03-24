@@ -13,7 +13,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    overflow: hidden;
     height: 100vh;
     font-family: 'Work Sans', sans-serif;
     background-color: var(--secondary-color);

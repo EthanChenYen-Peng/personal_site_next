@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Wrapper = styled.div`
-  height: 100vh;
   width: 80%;
   margin: 4rem auto;
   color: var(--primary-color);
