@@ -3,6 +3,7 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --primary-color: #EAE0D5;
     --secondary-color: #22333B;
+    --dark-gray-20: #495057;
     --font-family-primary: 'Work Sans', sans-serif;
     --font-family-secondary: 'Poppins', sans-serif;
   }

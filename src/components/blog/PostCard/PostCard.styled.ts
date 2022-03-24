@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Container = styled.div`
-  background-color: #495057;
+  background-color: var(--dark-gray-20);
   padding: 2rem;
   border-radius: 10px;
   margin: 4rem 0;

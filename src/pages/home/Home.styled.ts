@@ -62,3 +62,28 @@ export const Highlight = styled.span`
   }
 `
 
+
+export const AboutContainer = styled.div`
+  width: 60%;
+  margin: 4rem auto;
+  display: flex;
+  align-items: center;
+`
+
+export const ImageContainer = styled.div`
+  img {
+    border-radius: 10px;
+  }
+`
+
+export const IntroContainer = styled.div`
+  margin-left: 6rem;
+  font-size: 1.5rem;
+  line-height: 2;
+`
+
+export const IntroHeader = styled.div`
+  font-size: 2rem;
+  font-weight: 500;
+
+`
