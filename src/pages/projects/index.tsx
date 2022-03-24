@@ -1,4 +1,5 @@
-import { Wrapper, Container,  StyledHeader } from "./Project.styled";
+import Link from "next/link";
+import { Wrapper, Container, StyledHeader } from "./Project.styled";
 import { getAllPosts, PostMeta } from "@/api/posts";
 import PostCard from "@/components/blog/PostCard";
 
@@ -9,12 +10,9 @@ function Projects({ posts }: Props) {
   return (
     <Wrapper>
       <StyledHeader>Porfolio Projects</StyledHeader>
-
-      <Container>
-        {posts.map((post) => (
-          <PostCard post={post} key={post.slug} />
-        ))}
-      </Container>
+      {posts.map((post) => (
+        <PostCard post={post} key={post.slug} />
+      ))}
     </Wrapper>
   );
 }

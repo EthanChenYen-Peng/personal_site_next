@@ -3,6 +3,8 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --primary-color: #EAE0D5;
     --secondary-color: #22333B;
+    --font-family-primary: 'Work Sans', sans-serif;
+    --font-family-secondary: 'Poppins', sans-serif;
   }
 
   *, *::before, *::after {
@@ -14,7 +16,11 @@ export const GlobalStyle = createGlobalStyle`
 
   html, body {
     height: 100vh;
-    font-family: 'Work Sans', sans-serif;
+    font-family: var(--font-family-primary);
     background-color: var(--secondary-color);
+  }
+
+  a, a:visited, a:hover {
+      text-decoration: none;
   }
 `;

@@ -2,21 +2,11 @@ import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Wrapper = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 4rem auto;
   color: var(--primary-color);
   @media(max-width: ${sizes.sm}) {
     width: 90%;
-  }
-`
-
-export const Container = styled.div`
-  background-color: #495057;
-  padding: 2rem;
-  border-radius: 10px;
-
-  @media(max-width: ${sizes.sm}) {
-    padding: 1rem;
   }
 `
 export const StyledHeader = styled.h1`

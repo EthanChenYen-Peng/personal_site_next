@@ -40,6 +40,7 @@ export interface PostMeta {
   tags: string[];
   date: string;
   coverImage: string;
+  projectUrl: string;
 }
 
 export const getPostFromSlug = (slug: string): Post => {
@@ -56,6 +57,7 @@ export const getPostFromSlug = (slug: string): Post => {
       tags: (data.tags ?? []).sort(),
       date: (data.date ?? new Date()).toString(),
       coverImage: data.image,
+      projectUrl: data.project_url
     },
   };
 };
