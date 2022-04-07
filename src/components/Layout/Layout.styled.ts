@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     height: 100vh;
     font-family: var(--font-family-primary);
     background-color: var(--secondary-color);
+    overflow-x: hidden;
   }
 
   a, a:visited, a:hover {
