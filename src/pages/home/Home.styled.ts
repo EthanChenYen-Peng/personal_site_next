@@ -68,6 +68,11 @@ export const AboutContainer = styled.div`
   margin: 4rem auto;
   display: flex;
   align-items: center;
+
+  @media(max-width: ${sizes.sm}) {
+    flex-direction: column;
+    width: 80%;
+  }
 `
 
 export const ImageContainer = styled.div`
@@ -80,6 +85,11 @@ export const IntroContainer = styled.div`
   margin-left: 6rem;
   font-size: 1.5rem;
   line-height: 2;
+
+  @media(max-width: ${sizes.sm}) {
+    margin-left: 0;
+    line-height: 1.25;
+  }
 `
 
 export const IntroHeader = styled.div`
