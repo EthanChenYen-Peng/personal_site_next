@@ -3,7 +3,7 @@ import fs from "fs";
 import { sync } from "glob";
 import matter from "gray-matter";
 
-const POSTS_PATH = path.join(process.cwd(), "project");
+const POSTS_PATH = path.join(process.cwd(), "projects");
 const PUBLIC_APTH = path.join(process.cwd(), "public");
 
 export const getSlugs = (): string[] => {
@@ -17,11 +17,13 @@ export const getSlugs = (): string[] => {
   });
 };
 
-export const getAllPosts = () => {
+export const getAllPosts = (postType: PostType = PostType.BLOG) => {
   const posts = getSlugs()
     .map((slug) => getPostFromSlug(slug))
+    .filter((post: Post) => post.meta.type === postType)
     .sort((a, b) => {
-      if (a.meta.date > b.meta.date) return 1; if (a.meta.date < b.meta.date) return -1;
+      if (a.meta.date > b.meta.date) return 1;
+      if (a.meta.date < b.meta.date) return -1;
       return 0;
     })
     .reverse();
@@ -33,6 +35,10 @@ export interface Post {
   meta: PostMeta;
 }
 
+export enum PostType {
+  PROJECT = "project",
+  BLOG = "blog",
+}
 export interface PostMeta {
   excerpt: string;
   slug: string;
@@ -41,6 +47,7 @@ export interface PostMeta {
   date: string;
   coverImage: string;
   projectUrl: string;
+  type: PostType;
 }
 
 export const getPostFromSlug = (slug: string): Post => {
@@ -57,7 +64,8 @@ export const getPostFromSlug = (slug: string): Post => {
       tags: (data.tags ?? []).sort(),
       date: (data.date ?? new Date()).toString(),
       coverImage: data.image,
-      projectUrl: data.project_url
+      projectUrl: data.project_url,
+      type: data.type ?? PostType.BLOG,
     },
   };
 };

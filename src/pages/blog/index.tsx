@@ -1,16 +1,15 @@
-import Link from "next/link";
-import { Wrapper, StyledHeader } from "./Projects.styled";
-import { getAllPosts, PostMeta, PostType } from "@/api/posts";
+import { getAllPosts, PostMeta } from "@/api/posts";
+import { Wrapper, Container, StyledHeader } from "../projects/Projects.styled";
 import PostCard from "@/components/blog/PostCard";
 
 interface Props {
   posts: PostMeta[];
 }
-function Projects({ posts }: Props) {
-  console.log(posts);
+function BlogIndex({ posts }: Props) {
+  console.log(posts)
   return (
     <Wrapper>
-      <StyledHeader>Porfolio Projects</StyledHeader>
+      <StyledHeader>Blog</StyledHeader>
       {posts.map((post) => (
         <PostCard post={post} key={post.slug} />
       ))}
@@ -19,10 +18,10 @@ function Projects({ posts }: Props) {
 }
 
 export async function getStaticProps() {
-  const posts = getAllPosts(PostType.PROJECT)
+  const posts = getAllPosts()
     .slice(0, 9)
     .map((post) => post.meta);
 
   return { props: { posts } };
 }
-export default Projects;
+export default BlogIndex;
