@@ -11,13 +11,14 @@ import { PostMeta } from "@/api/posts";
 
 interface Props {
   post: PostMeta;
+  linkTo: string;
 }
-function PostCard({ post }: Props) {
+function PostCard({ post, linkTo }: Props) {
   const handleProjectLinkClick = (e: Event) => {
     e.stopPropagation();
   };
   return (
-    <Link href={`/projects/${post.slug}`} passHref>
+    <Link href={linkTo} passHref>
       <Container>
         <ContentContainer>
           <ContentHeader>{post.title}</ContentHeader>

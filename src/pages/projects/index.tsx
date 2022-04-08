@@ -7,12 +7,11 @@ interface Props {
   posts: PostMeta[];
 }
 function Projects({ posts }: Props) {
-  console.log(posts);
   return (
     <Wrapper>
       <StyledHeader>Porfolio Projects</StyledHeader>
       {posts.map((post) => (
-        <PostCard post={post} key={post.slug} />
+        <PostCard post={post} key={post.slug} linkTo={`/projects/${post.slug}`} />
       ))}
     </Wrapper>
   );

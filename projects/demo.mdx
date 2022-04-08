@@ -1,53 +1,160 @@
 ---
-title: "Laravel & Vue : Medium blog clone"
-excerpt: Medium blog clone build with Laravel and Vue
-created: 2020-07-06T07:27:03.714Z
+title: MERN twitter clone
+excerpt: "CRUD + Real-time chat : A social network clone."
+created: 2020-07-22T07:27:03.714Z
 tags:
-  - Laravel
-  - Vue
-project_url: https://laravel-medium.herokuapp.com
-image: /images/laravel-medium.png
+  - MERN
+  - React
+  - Express
+  - NodeJS
+  - Real-time chat
+image: /images/mern-twitter.png
+project_url: https://mern-twitter.netlify.app
 ---
+# MERN Twitter Clone
+
+<CenteredImage
+  src={"/images/mern-twitter.png"}
+  objectFit="cover"
+  width={700}
+  height={500}
+/>
 
 ## Project URL
-<https://laravel-medium.herokuapp.com>
+[https://mern-twitter.netlify.app](https://mern-twitter.netlify.app)
 
 ## Github links
-<https://github.com/EthanChenYen-Peng/laravel_medium>
+[Backend API: https://github.com/EthanChenYen-Peng/mern_twitter_clone_backend](https://github.com/EthanChenYen-Peng/mern_twitter_clone_backend)
+
+[Frontend: https://github.com/EthanChenYen-Peng/mern_twitter_clone_frontend](https://github.com/EthanChenYen-Peng/mern_twitter_clone_frontend)
 
 ## Introduction
 
-Blog app, the quintessential CRUD application, is widely used as a learning project among web developers. Since I'm learning Laravel and have become a subscriber of the Medium blog recently. I thought it might be a good project to build a medium clone.
+This is meant to be a clone of a typical social network website. Originally I was thinking of building an Instagram clone, but later realize that Twitter has a much nicer user interface. Comparing to my previous MERN app (todo list), it is much more complicated in terms of both functionality and UI design. Additionally, to make it more than a just glorified version CRUD application and to distinguish to my previous app, I implemented a real-time chat functionality using Socket io.
 
 ## Technologies
-1. Blade template : View layer engine that generate dynamic HTML (default setup from Laravel).
-2. Vue component : Vue components are added to handle parts that required a bit more user interaction. For instance :
-    - Load any additional comments on a blog post instantly without having to reload the entire page.
-    - Instant update of clap count for a blog post when user click the clap button.
-3. Vuex: For state management between Vue components.
-4. TailwindCSS : A utility based css framework that seems to be particular popular among the Laravel and Vue community.
-5. Heroku: PaaS plateform that used to service the web app.
-6. Amazon S3: To store and loads media assets, these include user avatar and cover image for a blog post.
+
+### Frontend
+
+- React JS : SPA app.
+- React router : Page routing for SPA app.
+- Redux : State management.
+- SCSS : Styling.
+- Netlify : Deployment of static assets.
+
+### Backend (API)
+
+- Express JS : Lightweight backend framework.
+- JSON web token : For stateless authentication.
+- Mongoose : Object relational mapper ( Provide an easier interface for CRUD operations on MongoDB).
+- MongoDB : Document database.
+- Socket io : To implement real-time communication.
+- Digital ocean : For server deployment. (Using Nginx as reverse proxy).
 
 ## What I have learned from the project
 
-1. Test driven development:
+1. Setting up multiple layout files using a pattern of higher-order component is particularly interesting. Below is the code snippet.
+   I essential pass the component to be rendered and the layout component to be used as parameters to the wrapper component AppRoute, it then checks whether or not the user is authenticated and whether or not need to redirect the user to the login page.
 
-- Laravel has a set of very comprehensive tools to generate fixtures for testing purposes.
-- Writing unit tests for testing :
-    1. Relationship between models.
-    2. Business logic. For instance, User model is a "Followable" trait that allows users to follow one another.
-- Integration test :
-    1. Testing each URL endpoints.
-    2. Test authentication (protected routes).
-        - Pages that only accessible for user who has logged in.
-    3. Test authorisation.
-        - User cannot update nor delete others posts
+```jsx
+const AppRoute = ({
+  component: Component,
+  layout: Layout,
+  isPrivate = true,
+  ...rest
+}) => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!isAuthenticated) {
+      dispatch(loadUser());
+    }
+  }, []);
 
-2. Vuex :
+  const appRoute = (
+    <Route
+      {...rest}
+      render={(props) =>
+        isPrivate && !isAuthenticated ? (
+          <Redirect to="/login" />
+        ) : (
+          <Layout>
+            <Component {...props} />
+          </Layout>
+        )
+      }
+    />
+  );
+  const spinner = (
+    <div className="spinner">
+      <ClipLoader size={150} color="#1B91DA" />
+    </div>
+  );
+  return isLoading ? spinner : appRoute;
+};
+```
 
-- State management is one of the most important topic in frontend framework like React and Vue.
+```jsx
+// App.js
+function App() {
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <div className="app">
+          <Alert />
+          <Switch>
+            <AppRoute path="/" exact component={Home} layout={MainLayout} />
+            <AppRoute
+              path="/register"
+              exact
+              component={Register}
+              isPrivate={false}
+              layout={AuthLayout}
+            />
+            <AppRoute
+              path="/login"
+              exact
+              component={Login}
+              isPrivate={false}
+              layout={AuthLayout}
+            />
 
-    Even though implementing Vuex maybe a bit overkill since there aren't that many Vue components in the project, I thought why not give in a try. Interestingly there are a lot of similarities between Vuex and Redux.
+            <AppRoute
+              path="/messages"
+              exact
+              component={Messages}
+              layout={MainLayout}
+            />
+            <AppRoute
+              path="/messages/:userTwoId"
+              exact
+              component={ChatRoom}
+              layout={MainLayout}
+            />
+            <AppRoute
+              path="/profile/edit"
+              exact
+              component={ProfileEdit}
+              layout={MainLayout}
+            />
+            <AppRoute
+              p
+              ath="/profile/:userName"
+              component={Profile}
+              layout={MainLayout}
+            />
+            <AppRoute
+              path="/:userName/status/:id"
+              component={Tweet}
+              layout={MainLayout}
+            />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </Provider>
+  );
+}
+```
 
-    1. Understand the core concept of Vuex including Store,Action, Mutation and Getter.
+2. Chat-room functionality. In contrast to the request and response cycle in HTTP, WebSocket is stateful, that is, the server is aware of the client and can push data to the client from the without an initial request from the client.

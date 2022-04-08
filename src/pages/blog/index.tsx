@@ -6,12 +6,11 @@ interface Props {
   posts: PostMeta[];
 }
 function BlogIndex({ posts }: Props) {
-  console.log(posts)
   return (
     <Wrapper>
       <StyledHeader>Blog</StyledHeader>
       {posts.map((post) => (
-        <PostCard post={post} key={post.slug} />
+        <PostCard post={post} key={post.slug} linkTo={`/blog/${post.slug}`} />
       ))}
     </Wrapper>
   );
