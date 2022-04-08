@@ -26,10 +26,7 @@ export default function Header() {
             <Link href="/"> Home </Link>
           </NavItem>
           <NavItem>
-            <Link href="/about">About</Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/projects">Project</Link>
+            <Link href="/projects">Projects</Link>
           </NavItem>
           <NavItem>
             <Link href="/blog">Blog</Link>
@@ -39,9 +36,6 @@ export default function Header() {
       <MobileNav open={open}>
         <NavItem>
           <Link href="/"> Home </Link>
-        </NavItem>
-        <NavItem>
-          <Link href="/about">About</Link>
         </NavItem>
         <NavItem>
           <Link href="/projects">Project</Link>
