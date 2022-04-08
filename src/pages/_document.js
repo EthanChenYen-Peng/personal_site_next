@@ -1,11 +1,14 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import Fivacon from '@/components/utils/Fivacon'
 
 export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head></Head>
+        <Head>
+          <Fivacon />
+        </Head>
         <body>
           <Main />
           <NextScript />
