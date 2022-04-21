@@ -34,13 +34,13 @@ export default function Header() {
         </StyledNav>
       </Wrapper>
       <MobileNav open={open}>
-        <NavItem>
+        <NavItem onClick={handleClick}>
           <Link href="/"> Home </Link>
         </NavItem>
-        <NavItem>
+        <NavItem onClick={handleClick}>
           <Link href="/projects">Project</Link>
         </NavItem>
-        <NavItem>
+        <NavItem onClick={handleClick}>
           <Link href="/blog">Blog</Link>
         </NavItem>
       </MobileNav>
