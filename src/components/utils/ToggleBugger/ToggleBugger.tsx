@@ -1,7 +1,7 @@
 import { Wrapper } from "./ToggleBugger.styled";
 
 interface Props {
-  open: Boolean;
+  open: boolean;
   onClick: Function;
 }
 function ToggleBugger({ open, onClick }: Props) {

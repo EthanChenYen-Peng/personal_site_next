@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 interface IWrapper {
-  open: Boolean
+  open: boolean
 }
 
 const rotateAngle = "33deg"
