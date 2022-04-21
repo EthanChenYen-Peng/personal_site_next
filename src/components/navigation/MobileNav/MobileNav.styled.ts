@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { sizes } from '@/utils/constants'
+import { sizes } from "@/utils/constants";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ open: boolean }>`
   display: none;
 
   @media (max-width: ${sizes.sm}) {
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Overlay = styled.div`
+export const Overlay = styled.div<{ open: boolean }>`
   display: none;
   position: relative;
   z-index: 1;

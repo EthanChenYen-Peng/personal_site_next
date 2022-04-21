@@ -5,8 +5,7 @@ import { Container } from "./Project.styled";
 import { buildMdxSource } from "@/utils/mdx";
 import Post from "@/components/blog/Post";
 
-
-export default function PostShow({ post }: Props) {
+export default function PostShow({ post }: { post: any }) {
   return (
     <Container>
       <Post post={post} />
@@ -14,9 +13,12 @@ export default function PostShow({ post }: Props) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async ({  params }) => {
-  const { slug } = params
-  return await buildMdxSource(slug)
+type Params = {
+  slug: string;
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug } = params as Params;
+  return await buildMdxSource(slug);
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

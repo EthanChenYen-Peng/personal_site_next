@@ -1,5 +1,5 @@
 import { getAllPosts, PostMeta } from "@/api/posts";
-import { Wrapper, Container, StyledHeader } from "../projects/Projects.styled";
+import { Wrapper, StyledHeader } from "../projects/Projects.styled";
 import PostCard from "@/components/blog/PostCard";
 
 interface Props {

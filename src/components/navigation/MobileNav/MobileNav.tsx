@@ -1,7 +1,7 @@
 import { Wrapper, Overlay } from "./MobileNav.styled";
 interface Props {
-  open: Boolean;
-  children: any;
+  open: boolean
+  children: any
 }
 function MobileNav({ open, children }: Props) {
   return (
