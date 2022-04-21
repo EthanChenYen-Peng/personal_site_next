@@ -1,4 +1,4 @@
-import { Container, SocialLinksContainer } from "./Footer.styled";
+import { Container, SocialLinksContainer } from './Footer.styled'
 import { Facebook, GitHub, Instagram } from 'react-feather'
 function Footer() {
   return (
@@ -10,7 +10,7 @@ function Footer() {
         <Instagram />
       </SocialLinksContainer>
     </Container>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

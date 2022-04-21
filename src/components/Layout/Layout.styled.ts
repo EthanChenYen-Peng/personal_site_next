@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   :root {
     --primary-color: #EAE0D5;
@@ -25,4 +25,4 @@ export const GlobalStyle = createGlobalStyle`
   a, a:visited, a:hover {
       text-decoration: none;
   }
-`;
+`

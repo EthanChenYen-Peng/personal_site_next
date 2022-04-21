@@ -1,9 +1,9 @@
-import { getAllPosts, PostMeta } from "@/api/posts";
-import { Wrapper, StyledHeader } from "../projects/Projects.styled";
-import PostCard from "@/components/blog/PostCard";
+import { getAllPosts, PostMeta } from '@/api/posts'
+import { Wrapper, StyledHeader } from '../projects/Projects.styled'
+import PostCard from '@/components/blog/PostCard'
 
 interface Props {
-  posts: PostMeta[];
+  posts: PostMeta[]
 }
 function BlogIndex({ posts }: Props) {
   return (
@@ -13,14 +13,14 @@ function BlogIndex({ posts }: Props) {
         <PostCard post={post} key={post.slug} linkTo={`/blog/${post.slug}`} />
       ))}
     </Wrapper>
-  );
+  )
 }
 
 export async function getStaticProps() {
   const posts = getAllPosts()
     .slice(0, 9)
-    .map((post) => post.meta);
+    .map((post) => post.meta)
 
-  return { props: { posts } };
+  return { props: { posts } }
 }
-export default BlogIndex;
+export default BlogIndex

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Wrapper = styled.div`
@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   @media (max-width: ${sizes.sm}) {
     padding: 0 2rem;
   }
-`;
+`
 
 export const ToggleBuggerContainer = styled.div`
   display: none;
@@ -31,7 +31,7 @@ export const StyledNav = styled.nav`
   @media (max-width: ${sizes.sm}) {
     display: none;
   }
-`;
+`
 
 export const NavItem = styled.li`
   a {
@@ -42,7 +42,7 @@ export const NavItem = styled.li`
   position: relative;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: 0;
@@ -65,7 +65,7 @@ export const NavItem = styled.li`
     align-items: center;
     font-size: 1.5rem;
   }
-`;
+`
 
 export const LogoContainer = styled.div`
   font-size: 1.5rem;

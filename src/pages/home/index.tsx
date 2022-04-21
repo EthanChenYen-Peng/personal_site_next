@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
-import Image from "next/image";
+import type { NextPage } from 'next'
+import Image from 'next/image'
 import {
   Container,
   HeroContainer,
@@ -11,7 +11,7 @@ import {
   AboutSectionContainer,
   AboutHeader,
   AboutHeaderContainer,
-} from "./Home.styled";
+} from './Home.styled'
 
 const Home: NextPage = () => {
   return (
@@ -33,8 +33,8 @@ const Home: NextPage = () => {
           />
         </ImageContainer>
         <IntroContainer>
-          <IntroHeader>My name is Yen Peng (Ethan)</IntroHeader>
-          I am a web developer, ...
+          <IntroHeader>My name is Yen Peng (Ethan)</IntroHeader>I am a web
+          developer, ...
         </IntroContainer>
       </AboutContainer>
 
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
         </AboutHeaderContainer>
       </AboutSectionContainer>
     </Container>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

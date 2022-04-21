@@ -4,7 +4,7 @@ interface IWrapper {
   open: boolean
 }
 
-const rotateAngle = "33deg"
+const rotateAngle = '33deg'
 export const Wrapper = styled.div<IWrapper>`
   position: relative;
   width: 33px;
@@ -21,24 +21,27 @@ export const Wrapper = styled.div<IWrapper>`
 
   & > span:nth-of-type(1) {
     &::before {
-      transform: ${props => props.open ? `rotate(${rotateAngle}) translateY(-10px)` : "translateY(-10px)"} ;
-     transform-origin:  left;
+      transform: ${(props) =>
+        props.open
+          ? `rotate(${rotateAngle}) translateY(-10px)`
+          : 'translateY(-10px)'};
+      transform-origin: left;
     }
   }
 
   & > span:nth-of-type(2) {
     &::before {
-      width: ${ props => props.open ? "0%" : "100%"}
+      width: ${(props) => (props.open ? '0%' : '100%')};
     }
   }
 
   & > span:nth-of-type(3) {
     &::before {
-      transform: ${props => props.open ? `rotate(-${rotateAngle}) translateY(10px)` : "translateY(10px)"} ;
-     transform-origin:  left;
+      transform: ${(props) =>
+        props.open
+          ? `rotate(-${rotateAngle}) translateY(10px)`
+          : 'translateY(10px)'};
+      transform-origin: left;
     }
   }
-
-
 `
-

@@ -1,4 +1,4 @@
-import { Wrapper, Overlay } from "./MobileNav.styled";
+import { Wrapper, Overlay } from './MobileNav.styled'
 interface Props {
   open: boolean
   children: any
@@ -8,7 +8,7 @@ function MobileNav({ open, children }: Props) {
     <Overlay open={open}>
       <Wrapper open={open}>{children}</Wrapper>
     </Overlay>
-  );
+  )
 }
 
-export default MobileNav;
+export default MobileNav

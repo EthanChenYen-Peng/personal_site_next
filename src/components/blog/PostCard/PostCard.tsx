@@ -1,23 +1,23 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link'
+import Image from 'next/image'
 import {
   Container,
   ContentContainer,
   ContentHeader,
   ContentExcerpt,
   ContentLink,
-} from "./PostCard.styled";
-import { PostMeta } from "@/api/posts";
-import { MouseEvent } from "react";
+} from './PostCard.styled'
+import { PostMeta } from '@/api/posts'
+import { MouseEvent } from 'react'
 
 interface Props {
-  post: PostMeta;
-  linkTo: string;
+  post: PostMeta
+  linkTo: string
 }
 function PostCard({ post, linkTo }: Props) {
   const handleProjectLinkClick = (e: MouseEvent) => {
-    e.stopPropagation();
-  };
+    e.stopPropagation()
+  }
   return (
     <Link href={linkTo} passHref>
       <Container>
@@ -39,7 +39,7 @@ function PostCard({ post, linkTo }: Props) {
         />
       </Container>
     </Link>
-  );
+  )
 }
 
-export default PostCard;
+export default PostCard

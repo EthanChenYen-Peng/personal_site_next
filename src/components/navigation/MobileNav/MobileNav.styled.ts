@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { sizes } from "@/utils/constants";
+import styled from 'styled-components'
+import { sizes } from '@/utils/constants'
 
 export const Wrapper = styled.div<{ open: boolean }>`
   display: none;
@@ -13,7 +13,7 @@ export const Wrapper = styled.div<{ open: boolean }>`
     height: calc(100vh - 4rem);
     right: 0;
     bottom: 0;
-    transform: ${(props) => (props.open ? "" : "translateX(300px)")};
+    transform: ${(props) => (props.open ? '' : 'translateX(300px)')};
     transition: transform 0.5s;
 
     display: flex;
@@ -22,7 +22,7 @@ export const Wrapper = styled.div<{ open: boolean }>`
     align-items: center;
     padding: 4rem 0;
   }
-`;
+`
 
 export const Overlay = styled.div<{ open: boolean }>`
   display: none;
@@ -36,7 +36,7 @@ export const Overlay = styled.div<{ open: boolean }>`
     bottom: 0;
     left: 0;
     right: 0;
-    transform: ${(props) => (props.open ? "" : "translateX(600px)")};
+    transform: ${(props) => (props.open ? '' : 'translateX(600px)')};
     transition: transform 0.7s;
   }
-`;
+`

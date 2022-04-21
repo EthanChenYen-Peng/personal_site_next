@@ -7,16 +7,18 @@ export const Container = styled.div`
   padding: 2rem;
   border-radius: 10px;
   background-color: #495057;
-  color: #CED4DA;
+  color: #ced4da;
   font-family: 'Mulish';
   line-height: 1.8;
 
-  h1 a, h2 a {
+  h1 a,
+  h2 a {
     color: #edf2f4;
     font-weight: 600;
   }
 
-  h3 a,p a {
+  h3 a,
+  p a {
     color: #faf9f9;
     font-weight: 600;
   }
@@ -29,11 +31,12 @@ export const Container = styled.div`
     margin: 1rem;
   }
 
-  h1, h2 {
+  h1,
+  h2 {
     margin: 1.5rem;
   }
 
-  @media(max-width: ${sizes.sm}) {
+  @media (max-width: ${sizes.sm}) {
     width: 90%;
     padding: 1rem;
   }

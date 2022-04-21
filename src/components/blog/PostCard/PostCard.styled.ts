@@ -15,7 +15,7 @@ export const Container = styled.div`
   &:hover {
     transform: scale(1.05);
   }
-  @media(max-width: ${sizes.sm}) {
+  @media (max-width: ${sizes.sm}) {
     padding: 1rem;
     flex-direction: column-reverse;
     gap: 1rem;
@@ -30,7 +30,7 @@ export const ContentContainer = styled.div`
   justify-content: space-between;
   align-items: flex-start;
 
-  @media(max-width: ${sizes.sm}) {
+  @media (max-width: ${sizes.sm}) {
     min-height: 250px;
     width: 100%;
     margin: 0;
@@ -46,13 +46,12 @@ export const ContentHeader = styled.h2`
     color: var(--primary-color);
   }
 
-  @media(max-width: ${sizes.sm}) {
+  @media (max-width: ${sizes.sm}) {
     font-size: 1.5rem;
   }
 `
 
-export const ContentExcerpt = styled.p`
-`
+export const ContentExcerpt = styled.p``
 
 export const ContentLink = styled.button`
   padding: 0.75rem;

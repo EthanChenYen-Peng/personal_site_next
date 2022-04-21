@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   width: 70%;
   margin: 4rem auto;
   color: var(--primary-color);
-  @media(max-width: ${sizes.sm}) {
+  @media (max-width: ${sizes.sm}) {
     width: 90%;
   }
 `
@@ -15,7 +15,7 @@ export const StyledHeader = styled.h1`
   margin-left: 4rem;
   margin-bottom: 3rem;
 
-  @media(max-width: ${sizes.sm}) {
+  @media (max-width: ${sizes.sm}) {
     font-size: 2rem;
     margin-left: 1rem;
     margin-bottom: 1rem;

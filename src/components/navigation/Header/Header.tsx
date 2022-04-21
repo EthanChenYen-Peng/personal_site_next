@@ -1,26 +1,24 @@
-import { useState } from "react";
-import Link from "next/link";
+import { useState } from 'react'
+import Link from 'next/link'
 import {
   Wrapper,
   StyledNav,
   NavItem,
   ToggleBuggerContainer,
-  LogoContainer
-} from "./Header.styled";
-import ToggleBugger from "@/components/utils/ToggleBugger";
-import MobileNav from "@/components/navigation/MobileNav";
-import Image from "next/image";
+  LogoContainer,
+} from './Header.styled'
+import ToggleBugger from '@/components/utils/ToggleBugger'
+import MobileNav from '@/components/navigation/MobileNav'
+import Image from 'next/image'
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
   const handleClick = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
   return (
     <>
       <Wrapper>
-        <LogoContainer>
-          YP
-        </LogoContainer>
+        <LogoContainer>YP</LogoContainer>
         <ToggleBuggerContainer>
           <ToggleBugger open={open} onClick={handleClick} />
         </ToggleBuggerContainer>
@@ -48,5 +46,5 @@ export default function Header() {
         </NavItem>
       </MobileNav>
     </>
-  );
+  )
 }

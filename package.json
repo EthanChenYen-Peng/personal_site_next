@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --dir src --fix",
-    "format": "prettier --write src/**/*.(ts|tsx)"
+    "format": "prettier --write \"src/**/*.(ts|tsx)\""
   },
   "dependencies": {
     "glob": "^7.2.0",

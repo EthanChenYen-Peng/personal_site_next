@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import { sizes } from "@/utils/constants";
+import styled from 'styled-components'
+import { sizes } from '@/utils/constants'
 
 export const Container = styled.div`
   background-color: var(--secondary-color);
   color: var(--primary-color);
   min-height: 100vh;
-`;
+`
 
 export const HeroContainer = styled.div`
   font-size: 4rem;
@@ -25,7 +25,7 @@ export const HeroContainer = styled.div`
       transform: translateX(0px);
     }
   }
-`;
+`
 
 export const Highlight = styled.span`
   position: relative;
@@ -36,7 +36,7 @@ export const Highlight = styled.span`
   &::before {
     position: absolute;
     z-index: -1;
-    content: "";
+    content: '';
     width: 0%;
     transform: rotate(1deg);
     height: 100%;
@@ -58,7 +58,7 @@ export const Highlight = styled.span`
       width: 100%;
     }
   }
-`;
+`
 
 export const AboutContainer = styled.div`
   width: 60%;
@@ -70,13 +70,13 @@ export const AboutContainer = styled.div`
     flex-direction: column;
     width: 80%;
   }
-`;
+`
 
 export const ImageContainer = styled.div`
   img {
     border-radius: 10px;
   }
-`;
+`
 
 export const IntroContainer = styled.div`
   margin-left: 6rem;
@@ -87,17 +87,17 @@ export const IntroContainer = styled.div`
     margin-left: 0;
     line-height: 1.25;
   }
-`;
+`
 
 export const IntroHeader = styled.div`
   font-size: 2rem;
   font-weight: 500;
-`;
+`
 
 export const AboutHeaderContainer = styled.div`
   display: flex;
   justify-content: center;
-`;
+`
 export const AboutHeader = styled.div`
   font-size: 2rem;
   margin: 2rem 0;
@@ -105,7 +105,7 @@ export const AboutHeader = styled.div`
   position: relative;
 
   &::before {
-    content: "";
+    content: '';
     width: 100%;
     position: absolute;
     left: 0;
@@ -113,6 +113,6 @@ export const AboutHeader = styled.div`
     height: 5px;
     background-color: var(--primary-color);
   }
-`;
+`
 
-export const AboutSectionContainer = styled.div``;
+export const AboutSectionContainer = styled.div``

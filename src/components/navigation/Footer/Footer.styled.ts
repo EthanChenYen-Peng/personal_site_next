@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Container = styled.div`
@@ -9,13 +9,13 @@ export const Container = styled.div`
   align-items: center;
   padding-left: 3rem;
   padding-right: 5rem;
-  @media(max-width: ${sizes.sm}) {
+  @media (max-width: ${sizes.sm}) {
     flex-direction: column-reverse;
     gap: 1.5rem;
     padding-top: 2rem;
     padding-bottom: 1.5rem;
   }
-`;
+`
 
 export const SocialLinksContainer = styled.div`
   display: flex;
@@ -29,4 +29,4 @@ export const SocialLinksContainer = styled.div`
       transform: scale(1.3);
     }
   }
-`;
+`
