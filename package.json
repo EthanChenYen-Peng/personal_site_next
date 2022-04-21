@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --dir src --fix"
+    "lint": "next lint --dir src --fix",
+    "format": "prettier --write src/**/*.(ts|tsx)"
   },
   "dependencies": {
     "glob": "^7.2.0",
@@ -31,7 +32,10 @@
     "babel-plugin-styled-components": "^2.0.6",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
+    "prettier": "^2.6.2",
     "typescript": "4.5.5"
   }
 }
