@@ -12,18 +12,21 @@ export const Container = styled.div`
   line-height: 1.8;
 
   h1 a, h2 a {
-    color: hsl(53deg, 100%, 50%);
+    color: #edf2f4;
     font-weight: 600;
   }
 
   h3 a,p a {
-    color: #64b9e7;
+    color: #faf9f9;
     font-weight: 600;
   }
 
   h1 a {
-    color: white;
     font-size: 2.5rem;
+  }
+
+  h3 {
+    margin: 1rem;
   }
 
   h1, h2 {
