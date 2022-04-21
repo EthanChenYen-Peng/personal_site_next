@@ -9,6 +9,8 @@ export const Wrapper = styled.div`
   padding: 0 5rem;
   background-color: var(--primary-color);
   color: var(--secondary-color);
+  position: relative;
+  z-index: 3;
 
   @media (max-width: ${sizes.sm}) {
     padding: 0 2rem;
