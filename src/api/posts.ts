@@ -4,7 +4,6 @@ import { sync } from 'glob'
 import matter from 'gray-matter'
 
 const POSTS_PATH = path.join(process.cwd(), 'projects')
-const PUBLIC_APTH = path.join(process.cwd(), 'public')
 
 export const getSlugs = (): string[] => {
   const paths = sync(`${POSTS_PATH}/*.mdx`)
@@ -12,7 +11,7 @@ export const getSlugs = (): string[] => {
   return paths.map((path) => {
     const parts = path.split('/')
     const fileName = parts[parts.length - 1]
-    const [slug, _ext] = fileName.split('.')
+    const [slug] = fileName.split('.')
     return slug
   })
 }

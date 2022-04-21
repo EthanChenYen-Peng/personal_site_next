@@ -9,7 +9,6 @@ import {
 } from './Header.styled'
 import ToggleBugger from '@/components/utils/ToggleBugger'
 import MobileNav from '@/components/navigation/MobileNav'
-import Image from 'next/image'
 export default function Header() {
   const [open, setOpen] = useState(false)
   const handleClick = () => {

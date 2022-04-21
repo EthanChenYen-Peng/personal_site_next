@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Wrapper, StyledHeader } from './Projects.styled'
 import { getAllPosts, PostMeta, PostType } from '@/api/posts'
 import PostCard from '@/components/blog/PostCard'

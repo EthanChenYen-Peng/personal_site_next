@@ -2,10 +2,13 @@ import type { GetStaticProps, GetStaticPaths } from 'next'
 import { getSlugs } from '@/api/posts'
 import 'highlight.js/styles/hybrid.css'
 import { Container } from '../projects/Project.styled'
-import { buildMdxSource } from '@/utils/mdx'
+import { buildMdxSource, MDXPost } from '@/utils/mdx'
 import Post from '@/components/blog/Post'
 
-export default function PostShow({ post }: { post: any }) {
+interface Props {
+  post: MDXPost
+}
+export default function PostShow({ post }: Props) {
   return (
     <Container>
       <Post post={post} />
