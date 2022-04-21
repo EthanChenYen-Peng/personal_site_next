@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    height: 100vh;
+    height: 100%;
     font-family: var(--font-family-primary);
     background-color: var(--secondary-color);
     overflow-x: hidden;
