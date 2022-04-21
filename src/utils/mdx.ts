@@ -7,7 +7,6 @@ import { PostMeta } from "@/api/posts";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 export async function buildMdxSource(slug: string) {
   const { content, meta } = getPostFromSlug(slug);
-  console.log(meta)
 
   const mdxSource = await serialize(content, {
     mdxOptions: {

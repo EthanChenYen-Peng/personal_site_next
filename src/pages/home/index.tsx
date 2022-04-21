@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   return (
     <Container>
       <HeroContainer>
-        <h2>Hi there, I'm Ethan</h2>
+        <h2>Hi there, I am Ethan</h2>
         <h2>
           I am a<Highlight>web developer</Highlight>
         </h2>
@@ -26,6 +26,7 @@ const Home: NextPage = () => {
         <ImageContainer>
           <Image
             src="/images/img3.jpg"
+            alt="Graduation photo"
             width={400}
             height={500}
             objectFit="cover"
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
         </ImageContainer>
         <IntroContainer>
           <IntroHeader>My name is Yen Peng (Ethan)</IntroHeader>
-          I'm a web developer, ...
+          I am a web developer, ...
         </IntroContainer>
       </AboutContainer>
 

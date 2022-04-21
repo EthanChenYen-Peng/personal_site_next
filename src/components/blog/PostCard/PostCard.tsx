@@ -8,13 +8,14 @@ import {
   ContentLink,
 } from "./PostCard.styled";
 import { PostMeta } from "@/api/posts";
+import { MouseEvent } from "react";
 
 interface Props {
   post: PostMeta;
   linkTo: string;
 }
 function PostCard({ post, linkTo }: Props) {
-  const handleProjectLinkClick = (e: Event) => {
+  const handleProjectLinkClick = (e: MouseEvent) => {
     e.stopPropagation();
   };
   return (

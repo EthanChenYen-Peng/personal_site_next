@@ -11,7 +11,7 @@ function CenteredImage(src: string) {
         margin: "2rem 0",
       }}
     >
-      <Image src={src} objectFit="cover" width={700} height={500} />
+      <Image src={src} objectFit="cover" alt="cover photo" width={700} height={500} />
     </div>
   );
 }
