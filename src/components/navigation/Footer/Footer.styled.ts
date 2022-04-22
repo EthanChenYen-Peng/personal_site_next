@@ -2,14 +2,13 @@ import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Container = styled.footer`
-  background-color: var(--primary-color);
+  background-color: var(--blog-wrapper-color);
   color: var(--secondary-color);
-  min-height: 70px;
+  min-height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding: 0 8rem;
   font-size: 1.25rem;
   @media (max-width: ${sizes.sm}) {
     flex-direction: column-reverse;

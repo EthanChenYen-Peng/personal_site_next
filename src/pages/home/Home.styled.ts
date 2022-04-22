@@ -13,15 +13,24 @@ export const HeroContainer = styled.div`
 
   isolation: isolate;
   h2:nth-of-type(2) {
+    transform: translateX(100px);
+    margin-top: 1rem;
+  }
+  h2:nth-of-type(3) {
     transform: translateX(200px);
     margin-top: 2rem;
   }
 
   @media (max-width: ${sizes.sm}) {
-    font-size: 2rem;
-    padding: 2rem 1rem;
+    font-size: 1.75rem;
+    padding: 2rem;
 
     h2:nth-of-type(2) {
+      transform: translateX(50px);
+      margin-top: 0rem;
+    }
+
+    h2:nth-of-type(3) {
       transform: translateX(0px);
     }
   }

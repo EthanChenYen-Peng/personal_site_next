@@ -17,7 +17,8 @@ const Home: NextPage = () => {
   return (
     <Container>
       <HeroContainer>
-        <h2>Hi there, I am Ethan</h2>
+        <h2>Hi there,</h2>
+        <h2>I am Ethan</h2>
         <h2>
           I am a<Highlight>web developer</Highlight>
         </h2>
