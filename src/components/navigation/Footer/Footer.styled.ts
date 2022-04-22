@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Container = styled.footer`
-  background-color: var(--blog-wrapper-color);
+  background-color: var(--primary-color);
   color: var(--secondary-color);
   min-height: 100px;
   display: flex;

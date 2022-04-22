@@ -7,11 +7,20 @@ export const H1 = styled.h1`
   font-weight: 600;
   margin-bottom: 5rem;
   text-align: center;
+  margin-top: 96px;
+
+  @media (max-width: ${sizes.sm}) {
+    font-size: 2rem;
+  }
 `
 
 export const H2 = styled.h2`
   margin-top: 96px;
   margin-bottom: 24px;
+
+  @media (max-width: ${sizes.sm}) {
+    margin-top: 64px;
+  }
 `
 
 export const H3 = styled.h3`
@@ -24,7 +33,6 @@ export const ATag = styled.a`
 
 export const PTag = styled.p`
   color: var(--primary-color);
-  font-size: 19px;
   margin-bottom: 24px;
 `
 

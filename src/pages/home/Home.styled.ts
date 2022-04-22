@@ -22,8 +22,8 @@ export const HeroContainer = styled.div`
   }
 
   @media (max-width: ${sizes.sm}) {
-    font-size: 1.75rem;
-    padding: 2rem;
+    font-size: 1.5rem;
+    padding: 2.5rem;
 
     h2:nth-of-type(2) {
       transform: translateX(50px);
@@ -32,6 +32,7 @@ export const HeroContainer = styled.div`
 
     h2:nth-of-type(3) {
       transform: translateX(0px);
+      margin-top: 1rem;
     }
   }
 `

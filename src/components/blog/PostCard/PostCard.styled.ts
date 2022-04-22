@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Container = styled.div`
-  background-color: var(--blog-wrapper-color);
+  background-color: var(--primary-color);
   padding: 2rem;
   border-radius: 10px;
   margin: 4rem 0;
@@ -51,15 +51,21 @@ export const ContentHeader = styled.h2`
   }
 `
 
-export const ContentExcerpt = styled.p``
+export const ContentExcerpt = styled.p`
+  font-size: 1.5rem;
+  @media (max-width: ${sizes.sm}) {
+    font-size: 1.2rem;
+  }
+`
 
 export const ContentLink = styled.button`
-  padding: 0.75rem;
+  padding: 1rem;
   font-weight 500;
   font-size: 1.25rem;
   background-color: var(--secondary-color);
   color: var(--primary-color);
   border: none;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.4s;
 
@@ -68,7 +74,7 @@ export const ContentLink = styled.button`
   }
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 
 `
