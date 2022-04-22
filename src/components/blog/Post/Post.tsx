@@ -1,6 +1,7 @@
 import { MDXPost } from '@/utils/mdx'
 import { MDXRemote } from 'next-mdx-remote'
 import Image from 'next/image'
+import { H1 } from './Post.styled'
 
 function CenteredImage(src: string) {
   return (
@@ -22,7 +23,10 @@ function CenteredImage(src: string) {
   )
 }
 
-const componentsForMarkdownDisplay = { CenteredImage }
+const componentsForMarkdownDisplay = {
+  CenteredImage,
+  h1: H1,
+}
 
 interface Props {
   post: MDXPost

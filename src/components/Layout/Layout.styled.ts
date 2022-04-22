@@ -22,6 +22,10 @@ export const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 
+  body {
+    line-height: 1.5;
+  }
+
   #__next {
     min-height: 100%;
     display: flex;

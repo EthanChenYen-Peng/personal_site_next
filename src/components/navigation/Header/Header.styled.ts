@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   color: var(--secondary-color);
   position: relative;
   z-index: 3;
+  font-weight: 500;
 
   @media (max-width: ${sizes.sm}) {
     padding: 0 2rem;

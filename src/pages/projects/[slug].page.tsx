@@ -1,19 +1,13 @@
 import type { GetStaticProps, GetStaticPaths } from 'next'
 import { getSlugs } from '@/api/posts'
-import 'highlight.js/styles/hybrid.css'
-import { Container } from './Project.styled'
 import { buildMdxSource, MDXPost } from '@/utils/mdx'
-import Post from '@/components/blog/Post'
+import PostShow from '../blog/[slug].page'
 
 interface Props {
   post: MDXPost
 }
-export default function PostShow({ post }: Props) {
-  return (
-    <Container>
-      <Post post={post} />
-    </Container>
-  )
+export default function ProjectShow({ post }: Props) {
+  return <PostShow post={post} />
 }
 
 type Params = {
