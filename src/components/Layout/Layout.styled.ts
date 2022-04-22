@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   :root {
     --primary-color: #EAE0D5;
@@ -20,6 +20,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--font-family-primary);
     background-color: var(--secondary-color);
     overflow-x: hidden;
+  }
+
+  #__next {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   a, a:visited, a:hover {

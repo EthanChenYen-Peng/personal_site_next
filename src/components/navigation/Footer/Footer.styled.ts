@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
-export const Container = styled.div`
+export const Container = styled.footer`
   background-color: var(--primary-color);
   min-height: 70px;
   display: flex;
