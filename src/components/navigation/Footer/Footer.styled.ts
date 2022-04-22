@@ -13,7 +13,6 @@ export const Container = styled.footer`
   @media (max-width: ${sizes.sm}) {
     flex-direction: column-reverse;
     justify-content: center;
-    gap: 2rem;
     padding: 2rem 0;
   }
 `
@@ -33,6 +32,7 @@ export const SocialLinksContainer = styled.div`
   }
 
   @media (max-width: ${sizes.sm}) {
+    margin-bottom: 2rem;
     & > svg {
       height: 1.75rem;
       width: 1.75rem;
