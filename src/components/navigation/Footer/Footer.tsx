@@ -5,9 +5,27 @@ function Footer() {
     <Container>
       © Yen-Peng Chen {new Date().getFullYear()}
       <SocialLinksContainer>
-        <GitHub />
-        <Facebook />
-        <Instagram />
+        <a
+          href="https://github.com/EthanChenYen-Peng"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <GitHub />
+        </a>
+        <a
+          href="https://www.facebook.com/yenpeng.chen"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Facebook />
+        </a>
+        <a
+          href="https://www.instagram.com/yenpengchen/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Instagram />
+        </a>
       </SocialLinksContainer>
     </Container>
   )

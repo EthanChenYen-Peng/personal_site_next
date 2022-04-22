@@ -21,7 +21,8 @@ export const SocialLinksContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 5rem;
-  & > svg {
+  svg {
+    color: var(--secondary-color);
     height: 2rem;
     width: 2rem;
     cursor: pointer;
