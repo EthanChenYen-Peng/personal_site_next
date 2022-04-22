@@ -17,7 +17,11 @@ export default function Header() {
   return (
     <>
       <Wrapper>
-        <LogoContainer>YP</LogoContainer>
+        <LogoContainer>
+          <Link href="/" passHref={true}>
+            YP
+          </Link>
+        </LogoContainer>
         <ToggleBuggerContainer>
           <ToggleBugger open={open} onClick={handleClick} />
         </ToggleBuggerContainer>
