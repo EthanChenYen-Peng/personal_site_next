@@ -1,8 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --primary-color: #EAE0D5;
-    --secondary-color: #22333B;
+    --primary-color: #ECECEC;
+    --secondary-color: #282E3A;
     --dark-gray-20: #495057;
     --font-family-primary: 'Work Sans', sans-serif;
     --font-family-secondary: 'Poppins', sans-serif;
