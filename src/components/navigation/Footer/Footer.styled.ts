@@ -11,9 +11,9 @@ export const Container = styled.footer`
   padding-right: 5rem;
   @media (max-width: ${sizes.sm}) {
     flex-direction: column-reverse;
-    gap: 1.5rem;
-    padding-top: 2rem;
-    padding-bottom: 1.5rem;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0;
   }
 `
 
@@ -22,11 +22,19 @@ export const SocialLinksContainer = styled.div`
   justify-content: space-between;
   gap: 5rem;
   & > svg {
-    font-size: 2rem;
+    height: 2rem;
+    width: 2rem;
     cursor: pointer;
     transition: all 0.2s;
     &:hover {
       transform: scale(1.3);
+    }
+  }
+
+  @media (max-width: ${sizes.sm}) {
+    & > svg {
+      height: 1.75rem;
+      width: 1.75rem;
     }
   }
 `
