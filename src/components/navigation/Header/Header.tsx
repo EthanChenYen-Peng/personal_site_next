@@ -38,7 +38,7 @@ export default function Header() {
           <Link href="/"> Home </Link>
         </NavItem>
         <NavItem onClick={handleClick}>
-          <Link href="/projects">Project</Link>
+          <Link href="/projects">Projects</Link>
         </NavItem>
         <NavItem onClick={handleClick}>
           <Link href="/blog">Blog</Link>

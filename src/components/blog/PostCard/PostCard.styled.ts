@@ -18,7 +18,6 @@ export const Container = styled.div`
   @media (max-width: ${sizes.sm}) {
     padding: 1rem;
     flex-direction: column-reverse;
-    gap: 1rem;
   }
 `
 
@@ -33,7 +32,8 @@ export const ContentContainer = styled.div`
   @media (max-width: ${sizes.sm}) {
     min-height: 250px;
     width: 100%;
-    margin: 0;
+    margin-right: 0;
+    margin-top: 1rem;
   }
 `
 
