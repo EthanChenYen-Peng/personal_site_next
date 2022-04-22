@@ -3,7 +3,7 @@ import { Facebook, GitHub, Instagram } from 'react-feather'
 function Footer() {
   return (
     <Container>
-      Copyright © {new Date().getFullYear()}. All Rights Reserved
+      © Yen-Peng Chen {new Date().getFullYear()}
       <SocialLinksContainer>
         <GitHub />
         <Facebook />

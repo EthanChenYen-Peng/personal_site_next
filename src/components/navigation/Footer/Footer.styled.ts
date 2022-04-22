@@ -7,8 +7,9 @@ export const Container = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 3rem;
+  padding-left: 5rem;
   padding-right: 5rem;
+  font-size: 1.25rem;
   @media (max-width: ${sizes.sm}) {
     flex-direction: column-reverse;
     justify-content: center;
