@@ -3,6 +3,7 @@ import { sizes } from '@/utils/constants'
 
 export const Container = styled.footer`
   background-color: var(--primary-color);
+  color: var(--secondary-color);
   min-height: 70px;
   display: flex;
   justify-content: space-between;

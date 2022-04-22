@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Container = styled.div`
-  background-color: var(--dark-gray-20);
+  background-color: var(--blog-wrapper-color);
   padding: 2rem;
   border-radius: 10px;
   margin: 4rem 0;
@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: space-between;
   transition: all 0.5s;
   cursor: pointer;
-  color: white;
+  color: var(--secondary-color);
 
   &:hover {
     transform: scale(1.05);
