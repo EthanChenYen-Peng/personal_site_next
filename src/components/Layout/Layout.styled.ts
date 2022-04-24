@@ -21,11 +21,11 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-family: var(--font-family-primary);
     background-color: var(--secondary-color);
-    overflow-x: hidden;
   }
 
   body {
     line-height: 1.5;
+    overflow: auto;
   }
 
   #__next {
