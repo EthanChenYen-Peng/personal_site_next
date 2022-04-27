@@ -5,13 +5,13 @@ export const Container = styled.div`
   background-color: var(--secondary-color);
   color: var(--primary-color);
   min-height: 100%;
+  overflow: hidden;
 `
 
 export const HeroContainer = styled.div`
   font-size: 4rem;
   padding: 5rem 7rem;
 
-  isolation: isolate;
   h2:nth-of-type(2) {
     transform: translateX(100px);
     margin-top: 1rem;

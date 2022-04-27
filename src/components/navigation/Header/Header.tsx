@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import {
   Wrapper,
@@ -14,6 +14,19 @@ export default function Header() {
   const handleClick = () => {
     setOpen(!open)
   }
+  // Disable scroll when mobile menu is open
+  // https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
+  useEffect(() => {
+    if (open) {
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${window.scrollY}px`
+    } else {
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      window.scrollTo(0, parseInt(scrollY || '0') * -1)
+    }
+  }, [open])
   return (
     <>
       <Wrapper>
