@@ -41,6 +41,7 @@ export const NavItem = styled.li`
     text-decoration: none;
     color: inherit;
   }
+
   list-style-type: none;
   position: relative;
 
@@ -57,6 +58,12 @@ export const NavItem = styled.li`
   }
 
   &:hover {
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &.active {
     &::before {
       width: 100%;
     }

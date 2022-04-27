@@ -9,8 +9,11 @@ import {
 } from './Header.styled'
 import ToggleBugger from '@/components/utils/ToggleBugger'
 import MobileNav from '@/components/navigation/MobileNav'
+import { useRouter } from 'next/router'
+
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const router = useRouter()
   const handleClick = () => {
     setOpen(!open)
   }
@@ -39,25 +42,34 @@ export default function Header() {
           <ToggleBugger open={open} onClick={handleClick} />
         </ToggleBuggerContainer>
         <StyledNav>
-          <NavItem>
-            <Link href="/"> Home </Link>
+          <NavItem className={router.pathname === '/' ? 'active' : ''}>
+            <Link href="/">Home</Link>
           </NavItem>
-          <NavItem>
+          <NavItem className={router.pathname === '/projects' ? 'active' : ''}>
             <Link href="/projects">Projects</Link>
           </NavItem>
-          <NavItem>
+          <NavItem className={router.pathname === '/blog' ? 'active' : ''}>
             <Link href="/blog">Blog</Link>
           </NavItem>
         </StyledNav>
       </Wrapper>
       <MobileNav open={open}>
-        <NavItem onClick={handleClick}>
+        <NavItem
+          className={router.pathname === '/' ? 'active' : ''}
+          onClick={handleClick}
+        >
           <Link href="/"> Home </Link>
         </NavItem>
-        <NavItem onClick={handleClick}>
+        <NavItem
+          className={router.pathname === '/projects' ? 'active' : ''}
+          onClick={handleClick}
+        >
           <Link href="/projects">Projects</Link>
         </NavItem>
-        <NavItem onClick={handleClick}>
+        <NavItem
+          className={router.pathname === '/blog' ? 'active' : ''}
+          onClick={handleClick}
+        >
           <Link href="/blog">Blog</Link>
         </NavItem>
       </MobileNav>
