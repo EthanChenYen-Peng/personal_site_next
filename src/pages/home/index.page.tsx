@@ -12,6 +12,7 @@ import {
   AboutHeader,
   AboutHeaderContainer,
 } from './Home.styled'
+import Timeline from '@/components/timeline'
 
 const Home: NextPage = () => {
   return (
@@ -43,6 +44,7 @@ const Home: NextPage = () => {
         <AboutHeaderContainer>
           <AboutHeader>About Me</AboutHeader>
         </AboutHeaderContainer>
+        <Timeline />
       </AboutSectionContainer>
     </Container>
   )

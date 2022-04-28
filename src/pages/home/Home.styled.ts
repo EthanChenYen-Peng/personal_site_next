@@ -125,4 +125,12 @@ export const AboutHeader = styled.div`
   }
 `
 
-export const AboutSectionContainer = styled.div``
+export const AboutSectionContainer = styled.div`
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+
+  @media (max-width: ${sizes.sm}) {
+    width: 90%;
+  }
+`
