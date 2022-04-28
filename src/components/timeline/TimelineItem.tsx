@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { useInView } from 'react-intersection-observer'
 import { motion, useAnimation } from 'framer-motion'
 import { sizes } from '@/utils/constants'
@@ -41,8 +41,6 @@ function TimelineItem({ title, content }: Props) {
 
   if (view) {
     controls.start('show')
-  } else {
-    controls.start('hidden')
   }
   return (
     <Container>
