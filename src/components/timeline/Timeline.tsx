@@ -6,6 +6,7 @@ function Timeline() {
     <Wrapper>
       <TimelineItem title="Item 1" content="Content 1" />
       <TimelineItem title="Item 1" content="Content 1" />
+      <TimelineItem title="Item 1" content="Content 1" />
     </Wrapper>
   )
 }

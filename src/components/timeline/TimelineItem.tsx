@@ -1,14 +1,62 @@
 import styled, { keyframes } from 'styled-components'
-
+import { useInView } from 'react-intersection-observer'
+import { motion, useAnimation } from 'framer-motion'
+import { sizes } from '@/utils/constants'
 interface Props {
   title: string
   content: string
 }
+
+const container = {
+  hidden: {
+    transform: 'translateX(-60px)',
+    opacity: 0,
+  },
+  show: {
+    transform: 'translateX(0px)',
+    opacity: 1,
+    transition: {
+      delay: 0.4,
+      duration: 0.3,
+    },
+  },
+}
+
+const sideLine = {
+  hidden: {
+    opacity: 0,
+    height: '0px',
+  },
+  show: {
+    opacity: 1,
+    height: '250px',
+    transition: {
+      duration: 0.4,
+    },
+  },
+}
 function TimelineItem({ title, content }: Props) {
+  const controls = useAnimation()
+  const [element, view] = useInView({ threshold: 0.5 })
+
+  if (view) {
+    controls.start('show')
+  } else {
+    controls.start('hidden')
+  }
   return (
     <Container>
-      <SideLine />
-      <ContentContainer>
+      <SideLine
+        ref={element}
+        variants={sideLine}
+        initial="hidden"
+        animate={controls}
+      />
+      <ContentContainer
+        variants={container}
+        initial="hidden"
+        animate={controls}
+      >
         <ItemHeader>{title}</ItemHeader>
         <Content>{content}</Content>
       </ContentContainer>
@@ -21,60 +69,23 @@ const Container = styled.div`
   width: 100%;
 `
 
-const sidelineHeight = keyframes`
-  0% {
-    height: 0px;
-  }
-
-  100% {
-    height: 280px;
-  }
-}
-`
-
-const showCircle = keyframes`
-  0% {
-    width: 0px;
-    height: 0px;
-  }
-
-  100% {
-    width: 30px;
-    height: 30px;
-  }
-}
-`
-const SideLine = styled.div`
+const SideLine = styled(motion.div)`
   background-color: var(--primary-color);
   width: 10px;
   position: relative;
-  height: 0px;
 
-  animation: ${sidelineHeight} 0.5s 1s ease-in both;
   &:after {
     content: '';
     position: absolute;
     bottom: 0;
-    width: 0px;
-    height: 0px;
+    width: 30px;
+    height: 30px;
     background: inherit;
     transform: translateX(-32%);
     border-radius: 50%;
-    animation: ${showCircle} 0.3s 1.5s linear both;
   }
 `
-const showContent = keyframes`
-  0% {
-    opacity: 0;
-    width: 50%;
-  }
-
-  100% {
-    opacity: 1;
-    width: 100%;
-  }
-`
-const ContentContainer = styled.div`
+const ContentContainer = styled(motion.div)`
   width: 100%;
   background: var(--primary-color);
   color: var(--secondary-color);
@@ -82,7 +93,11 @@ const ContentContainer = styled.div`
   margin-left: 4rem;
   margin-top: 4rem;
   padding: 2rem;
-  animation: ${showContent} 0.5s 1s ease-in-out both;
+
+  @media (max-width: ${sizes.sm}) {
+    margin-left: 2rem;
+    padding: 1rem;
+  }
 `
 
 const Content = styled.div`
