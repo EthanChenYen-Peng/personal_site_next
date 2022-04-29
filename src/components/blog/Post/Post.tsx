@@ -3,28 +3,20 @@ import { MDXRemote } from 'next-mdx-remote'
 import Image from 'next/image'
 import { Code, H3, H2, Ul, Li, PTag, ATag, H1 } from './Post.styled'
 
-function CenteredImage(src: string) {
+function CenteredImage(props: any) {
   return (
-    <div
+    <span
       style={{
         display: 'flex',
         justifyContent: 'center',
         margin: '2rem 0',
       }}
     >
-      <Image
-        src={src}
-        objectFit="cover"
-        alt="cover photo"
-        width={700}
-        height={500}
-      />
-    </div>
+      <Image objectFit="cover" width={700} height={500} {...props} />
+    </span>
   )
 }
-
 const componentsForMarkdownDisplay = {
-  CenteredImage,
   h1: H1,
   h2: H2,
   h3: H3,
@@ -32,6 +24,7 @@ const componentsForMarkdownDisplay = {
   p: PTag,
   ul: Ul,
   li: Li,
+  img: CenteredImage,
   code: Code,
 }
 

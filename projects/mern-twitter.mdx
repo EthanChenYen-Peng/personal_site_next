@@ -1,6 +1,6 @@
 ---
 title: MERN twitter clone
-excerpt: "CRUD + Real-time chat : A social network clone."
+excerpt: 'CRUD + Real-time chat : A social network clone.'
 created: 2020-07-22T07:27:03.714Z
 tags:
   - MERN
@@ -12,19 +12,17 @@ image: /images/mern-twitter.png
 type: project
 project_url: https://mern-twitter.netlify.app
 ---
+
 # MERN Twitter Clone
 
-<CenteredImage
-  src={"/images/mern-twitter.png"}
-  objectFit="cover"
-  width={700}
-  height={500}
-/>
+![Cover](/images/mern-twitter.png)
 
 ## Project URL
+
 [https://mern-twitter.netlify.app](https://mern-twitter.netlify.app)
 
 ## Github links
+
 [Backend API: https://github.com/EthanChenYen-Peng/mern_twitter_clone_backend](https://github.com/EthanChenYen-Peng/mern_twitter_clone_backend)
 
 [Frontend: https://github.com/EthanChenYen-Peng/mern_twitter_clone_frontend](https://github.com/EthanChenYen-Peng/mern_twitter_clone_frontend)
@@ -64,14 +62,14 @@ const AppRoute = ({
   isPrivate = true,
   ...rest
 }) => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const isLoading = useSelector((state) => state.auth.isLoading);
-  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
+  const isLoading = useSelector((state) => state.auth.isLoading)
+  const dispatch = useDispatch()
   useEffect(() => {
     if (!isAuthenticated) {
-      dispatch(loadUser());
+      dispatch(loadUser())
     }
-  }, []);
+  }, [])
 
   const appRoute = (
     <Route
@@ -86,14 +84,14 @@ const AppRoute = ({
         )
       }
     />
-  );
+  )
   const spinner = (
     <div className="spinner">
       <ClipLoader size={150} color="#1B91DA" />
     </div>
-  );
-  return isLoading ? spinner : appRoute;
-};
+  )
+  return isLoading ? spinner : appRoute
+}
 ```
 
 ```jsx
@@ -154,7 +152,7 @@ function App() {
         </div>
       </BrowserRouter>
     </Provider>
-  );
+  )
 }
 ```
 
