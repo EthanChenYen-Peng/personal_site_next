@@ -45,6 +45,18 @@ export const Li = styled.li`
 `
 
 export const Code = styled.code`
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   margin: 2rem 0;
+`
+
+export const BlockQuote = styled.blockquote`
+  border-left: 2px solid black;
+  margin: 1.5rem;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+
+  @media (max-width: ${sizes.sm}) {
+    font-size: 1rem;
+    margin: 0.5rem;
+  }
 `

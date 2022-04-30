@@ -1,7 +1,7 @@
 import { MDXPost } from '@/utils/mdx'
 import { MDXRemote } from 'next-mdx-remote'
 import Image from 'next/image'
-import { Code, H3, H2, Ul, Li, PTag, ATag, H1 } from './Post.styled'
+import { Code, H3, H2, Ul, Li, PTag, ATag, H1, BlockQuote } from './Post.styled'
 
 function CenteredImage(props: any) {
   return (
@@ -24,6 +24,7 @@ const componentsForMarkdownDisplay = {
   p: PTag,
   ul: Ul,
   li: Li,
+  blockquote: BlockQuote,
   img: CenteredImage,
   code: Code,
 }
