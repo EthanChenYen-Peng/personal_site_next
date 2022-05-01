@@ -14,6 +14,9 @@ interface Props {
   post: PostMeta
   linkTo: string
 }
+function Spacer() {
+  return <div></div>
+}
 function PostCard({ post, linkTo }: Props) {
   const handleProjectLinkClick = (e: MouseEvent) => {
     e.stopPropagation()
@@ -24,11 +27,15 @@ function PostCard({ post, linkTo }: Props) {
         <ContentContainer>
           <ContentHeader>{post.title}</ContentHeader>
           <ContentExcerpt>{post.excerpt}</ContentExcerpt>
-          <ContentLink onClick={handleProjectLinkClick}>
-            <Link href={post.projectUrl}>
-              <a target="_blank">View Project</a>
-            </Link>
-          </ContentLink>
+          {post.projectUrl ? (
+            <ContentLink onClick={handleProjectLinkClick}>
+              <Link href={post.projectUrl}>
+                <a target="_blank">View Project</a>
+              </Link>
+            </ContentLink>
+          ) : (
+            <Spacer />
+          )}
         </ContentContainer>
         <Image
           src={post.coverImage}
