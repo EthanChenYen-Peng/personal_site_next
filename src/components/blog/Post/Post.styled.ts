@@ -34,14 +34,17 @@ export const ATag = styled.a`
 export const PTag = styled.p`
   color: var(--primary-color);
   margin-bottom: 24px;
+  overflow-wrap: break-word;
 `
 
 export const Ul = styled.ul`
   color: var(--primary-color);
+  overflow-wrap: break-word;
 `
 
 export const Li = styled.li`
   color: var(--primary-color);
+  overflow-wrap: break-word;
 `
 
 export const Code = styled.code`
