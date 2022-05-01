@@ -1,7 +1,7 @@
 ---
 title: Learn about stack context
-excerpt: 'The hidden footgun in positioned layout'
-created: 2020-07-22T07:27:03.714Z
+excerpt: 'A hidden footgun in positioned layout'
+created: 2022-05-01
 tags:
   - CSS
 image: /images/stacking-context/fixed-elements.png
@@ -14,7 +14,7 @@ project_url: https://mern-twitter.netlify.app
 
 A stacking context is one of the topics that I find a bit difficult to get my head around; therefore, I think it makes a perfect topic to write about.
 
-Considering the following example, boxes A, B, C are all positioned fixed, and C is on top of B and B is on top of A.
+Considering this example, boxes A, B and C are all fixed positioned.
 ![Fixed elements](/images/stacking-context/fixed-elements.png)
 
 ```html
@@ -54,9 +54,9 @@ Considering the following example, boxes A, B, C are all positioned fixed, and C
 }
 ```
 
-This is what you might be expected, all three elements are positioned fixed, and therefore the stacking order is then determined by DOM ordering, in this case, C comes after B which comes after A, as a result, C is on top of B, which is on top of A. This makes perfect sense.
+The result is not surprising, since all three elements are positioned fixed, the stacking order is determined by their DOM ordering, in this case, C comes after B, which comes after A, as a result, C is on top of B, which is on top of A.
 
-Now, suppose we somehow need to reverse the stacking over. One approach is simply to reverse the DOM ordering
+Now, suppose we somehow need to reverse their stacking over. One approach is simply to reverse their DOM ordering.
 
 ```html
 <body>
@@ -67,10 +67,8 @@ Now, suppose we somehow need to reverse the stacking over. One approach is simpl
 ```
 
 This might not be the ideal approach, but it does get the job done.
-Another approach is to use the `z-index`, which allows us to manually control the stacking order.
-You can imagine the z-axis being the that moves towards you, the higher the value the closer the element is to you.
 
-In our case, let's set the `z-index` to 3, 2,1 to box A, B and C respectively.
+A more suitable method is to use `z-index` to manually control the stacking order.
 
 ```css
 .box-a {
@@ -91,8 +89,7 @@ In our case, let's set the `z-index` to 3, 2,1 to box A, B and C respectively.
 
 ![reordering via z index](/images/stacking-context/using-z-index.png)
 
-It works. So far so good, nothing unexpected.
-Now consider another example, this time rather having all three elements as at the layer ( being silbing nodes), let's make box A position within a `div` like so
+Now consider another example, but this time rather than having all three elements in the layer(being siblings nodes), let's position box A within a blue container
 
 ```html
 <body>
@@ -114,7 +111,7 @@ Now consider another example, this time rather having all three elements as at t
 
 ![adding blue container](/images/stacking-context/adding-blue-container.png)
 
-And then, a new requirement comes in, we have to make a decorative element on the top right of blue box .
+And then, a new requirement comes in, we are asked to make a decorative element on the top right of the blue container.
 
 ```html
 <body>
@@ -152,10 +149,9 @@ And then, a new requirement comes in, we have to make a decorative element on th
 ```
 
 ![with top right circle](/images/stacking-context/with-decorative-element.png)
+To make the circle appear on the top-right edge of the blue container, we have set the container to `positive: relative`.
 
-In order to make the circle appear on the top right edge of the blue container, we have set the container to `positive: relative`.
-
-After a while another requirement comes in, another decorative element, this time, a gray vertical bar.
+After a while, we were asked to add another decorative element, a grey vertical bar.
 
 ```html
 <body>
@@ -182,12 +178,13 @@ After a while another requirement comes in, another decorative element, this tim
 
 ![grey verticalbar ](/images/stacking-context/grey-verticalbar.png)
 
-But then we don't want our blue container to be below the vertical grey bar. Here is what we know.
+But then, we don't want our blue container to be below the vertical grey bar. How can we do that?
+Here is what we know:
 
 1. Both the blue container and the vertical grey bar are positioned elements, and thus the stacking order depends on the DOM order.
-2. To manual set the DOM order we can use the `z-index` property, and the default `z-index` is `0`
-3. We don't want box B, which has `z-index: 2` to be underneath the blue container.
-   Given the above constraints, to place the blue container above the vertical grey bar and below box B we can set `z-index: 1`.
+2. To manual set the DOM order, we can use the `z-index` property, and the default `z-index` is 0.
+3. We don't want box B, which has `z-index: 2`, to be underneath the blue container.
+   Given the above constraints, to place the blue container above the vertical grey bar and below box B, we can set `z-index` to 1.
 
 ```css
 .blue-container {
@@ -197,13 +194,72 @@ But then we don't want our blue container to be below the vertical grey bar. Her
 ```
 
 ![blue container with new stacking context](/images/stacking-context/blue-stacking-context.png)
+It works. The blue container is above the vertical grey bar and below box B, but something unexpected happened; box B appears to be on top of box A.
 
-It works, now the blue container is above the vertical grey bar and below box B, but something unexpected happened as the result, right now box B appears to be on top of box A.
-That's a bit surprising, isn't it? In the last few steps, we didn't even touch either box A or box B, we simply added a few CSS properties to a parent element of box A (ie, the blue container) for some layout purposes. How is it possible it somehow altered the stacking order between box A and box B?
+That's a bit surprising, isn't it? In the last few steps, we didn't even touch either box A or box B; we simply added a few CSS properties to a parent element of box A (i.e., the blue container) for some layout purposes. How is it possible we somehow altered the stacking order between box A and box B?
 
 ### Stacking context
 
 To understand why we first have to understand the **stacking context**.
-Taken directly from the excellent book CSS-in-depth by
+Taken directly from the excellent book [CSS-in-depth](https://www.manning.com/books/css-in-depth) by Keith
 
 > A _stacking context_ consists of an element or a group of elements that are painted together by the browser.
+
+The critical point here is that elements are being **painted together**. It implies that no other elements from a different stacking context can be stacked between two elements within the same stacking context.
+
+In other words, `z-index` only works for elements within the same stacking context.
+
+There are many ways to [create a stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context).
+Among those, two are more related to our example.
+A stacking context is created on an element if :
+
+- It is relatively positioned and has set `z-index` value.
+- It is fixed positioned.
+
+In our case, the vertical grey bar and all three boxes, A, B and C, are fixed positioned, creating their own stacking context. Moreover, our blue container is relatively positioned and has a set `z-index: 1`; therefore, it also creates a stacking context.
+
+Let's review our markup and denote stacking with the prefix "S" and the value for `z-index`.
+
+```html
+<html lang="en">
+  # S0
+  <head>
+    ...
+  </head>
+  <body>
+    <div class="blue-container">
+      # S1 z: 1
+      <div class="box box-a">A</div>
+      . # S2 z: 3
+      <div class="circle"></div>
+    </div>
+    <div class="box box-b">B</div>
+    # S3 z: 2
+    <div class="box box-c">c</div>
+    # S4 z: 1
+    <div class="verticalbar"></div>
+    # S5 z: 0
+  </body>
+</html>
+```
+
+Here we have four elements with stacking contexts `S1`, `S3`, `S4` and `S5` within the stacking context created by the root element `S0`. Thus, their stacking order will be determined by their `z-index` and DOM order.
+
+`S3` has a higher `z-index` than `S1`; therefore, box B appears on top of everything within the blue container. Remember, the blue container creates a stacking context and everything within that stacking context is painted together, in this case, box A and the top-right quarter circle.
+
+This explains why box A is below box B even though it has a higher z-index. Its parent element creates a stacking context that has a lower stacking order than box B.
+
+### Conclusion
+
+Our artificial example showed how tricky the stacking context can be, and the problem tends to happen very implicitly. In this case, we unintentionally created a stacking context by adding some decorative elements, which broke the original stacking order.
+
+In the future post, I'll address a few common approaches and good practices about managing stacking context.
+
+Bye for now.
+
+### References
+
+---
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+https://www.manning.com/books/css-in-depth
