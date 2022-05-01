@@ -29,8 +29,7 @@ export const ToggleBuggerContainer = styled.div`
 
 export const StyledNav = styled.nav`
   display: flex;
-  justify-content: space-between;
-  width: 25%;
+  gap: 4rem;
   @media (max-width: ${sizes.sm}) {
     display: none;
   }
