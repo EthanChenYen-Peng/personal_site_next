@@ -39,8 +39,8 @@ export const HeroContainer = styled.div`
 
 export const Highlight = styled.span`
   position: relative;
-  padding: 0.5rem;
   color: var(--secondary-color);
+  padding: 0.7rem;
 
   white-space: nowrap;
   &::before {
@@ -48,13 +48,49 @@ export const Highlight = styled.span`
     z-index: -1;
     content: '';
     width: 0%;
-    transform: rotate(1deg);
+    transform: rotate(-2deg);
     height: 100%;
     background-color: var(--primary-color);
     animation-name: drawHightlight;
-    animation-duration: 2s;
+    animation-duration: 0.7s;
+    animation-delay: 1.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+
+  @media (max-width: ${sizes.sm}) {
+  }
+  @keyframes drawHightlight {
+    from {
+      width: 0%;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
+`
+
+export const Highlight2 = styled.span`
+  position: relative;
+  padding: 0.7rem;
+  color: var(--secondary-color);
+
+  white-space: nowrap;
+  &::before {
+    transform-origin: left top;
+    position: absolute;
+    z-index: -1;
+    content: '';
+    width: 0%;
+    transform: rotate(2deg);
+    height: 100%;
+    background-color: #576c6e;
+    animation-name: drawHightlight;
+    animation-duration: 0.5s;
     animation-delay: 1s;
     animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
   }
 
   @media (max-width: ${sizes.sm}) {

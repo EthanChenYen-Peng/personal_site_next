@@ -11,6 +11,7 @@ import {
   AboutSectionContainer,
   AboutHeader,
   AboutHeaderContainer,
+  Highlight2,
 } from './Home.styled'
 import Timeline from '@/components/timeline'
 
@@ -21,7 +22,10 @@ const Home: NextPage = () => {
         <h2>Hi there,</h2>
         <h2>I am Ethan</h2>
         <h2>
-          I am a<Highlight>web developer</Highlight>
+          I am a
+          <Highlight2>
+            <Highlight>web developer</Highlight>
+          </Highlight2>
         </h2>
       </HeroContainer>
       <AboutContainer>
