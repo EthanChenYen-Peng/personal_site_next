@@ -1,0 +1,235 @@
+---
+title: Transpilation 101
+excerpt: 'Intro to transpilation using Babel'
+created: 2022-05-01
+tags:
+  - CSS
+image: /images/transpilation/transpilation.png
+---
+
+# Intro to transpilation using Babel
+
+![Cover](/images/transpilation/transpilation.png)
+
+In today's post, I'll briefly explore the topic of Javascript transpilation. Many people might be familiar with the word "compilation" which in the world of software it refers to the process of transforming your higher-level code into machine code which is what computers can understand.
+
+But what about "transpilation"? They sound similar. Are they the same thing? Not quite, otherwise, the term "transpilation" might be deemed redundant. The difference between the two lies in "the level of abstraction". Let's see an example to get what I mean.
+
+### Compilation ( C → machine code and C→assembly)
+
+`main.c`
+
+```c
+#include <stdio.h>
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int x = 2;
+    int y = 23;
+    int sum = add(x, y);
+    printf("%d + %d = %d", x, y, sum);
+    return 0;
+}
+```
+
+Compile to machine code.
+
+```c
+gcc main.c  // produce a.out (binary code)
+gcc -S -o main.s main.o // product main.s (assembly code)
+
+```
+
+Let's print out a section from complied code.
+
+`a.out`
+
+![Binary code example](/images/transpilation/binary-code-example.png)
+
+`main.s`
+![Assembly code example](/images/transpilation/assembly-code-example.png)
+
+As you can see, the result of `a.out` is indecipherable, and to understand `main.s` requires deep knowledge of computer system assembly code. The point is that both `a.out` and `main.s` are at a lower layer of abstraction than `main.c`; they are closer to the machine.
+
+### Transpilation (ES6 → ES5)
+
+In contrast to compilation, which transforms your source code into something that is at a lower lever, transpilation, on the other hand, keeps the layer of abstraction approximately the same. It is also referred to as "source-to-source compilation". For example, converting a program from python2 to python3 or ES6 to ES5, notice both the source code and output code pretty stay at the same level of abstraction.
+
+As we are focusing on JavaScript here, let's see an example of transpilation using Babel.
+
+```bash
+npm init -y
+
+mkdir src
+touch src/person.js
+touch src/index.js
+```
+
+Let's use ES6 `class` use in `person.js`. Notice the use of `import` and `export` syntax from the ES6 modules.
+
+`src/person.js`
+
+```jsx
+class Person {
+  constructor(name) {
+    this.name = name
+  }
+
+  hello() {
+    return `Hello from ${this.name}`
+  }
+}
+
+export default Person
+```
+
+`src/index.js`
+
+```jsx
+import Person from './person'
+
+const p = new Person('Ethan')
+
+console.log(p.hello())
+```
+
+### Approach 1 : Using directly babel/core in a script.
+
+1. First, we install the dependencies.
+
+```json
+npm i -D @babel/core @babel/preset-env
+```
+
+`@babel/core` is the core module that acts as a wrapper wraps everything in Babel transformation API. Think of it as a tool that provides an entry point to your transformation pipeline.
+
+`@babel/core` itself does not know how to transform your code. This is where "plugins" come in handy. Babel plugins (or "presets", which is a group of plugins) are the ones that actually do the code transformation. Here I'll be using `@babel/preset-env`, enabling us to use the latest JavaScript features.
+
+To use `@babel/core`, we first have to set up a local configuration file.
+
+```json
+// ./babel.config.json
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+
+Here is a short script to use Babel to transform every file in the `src` directory and output transformed code to the `dist` directory.
+
+```jsx
+// ./babel-example.js
+const path = require('path')
+const fs = require('fs')
+const babel = require('@babel/core')
+
+const srcPath = path.resolve(__dirname, './src')
+const distPath = path.resolve(__dirname, './dist')
+
+if (!fs.existsSync(distPath)) {
+  fs.mkdirSync(distPath)
+}
+
+fs.readdir(srcPath, function (err, files) {
+  files.forEach(function (fileName) {
+    const srcFilePath = path.resolve(srcPath, `./${fileName}`)
+    const distFilePath = path.resolve(distPath, `./${fileName}`)
+
+    let code = babel.transformFileSync(srcFilePath, {}).code
+    fs.writeFileSync(distFilePath, code, { flag: 'w+' })
+  })
+})
+```
+
+Run `node babel_example.js` to execute to script.
+
+![Directory structure after building the assets](/images/transpilation/directory-structure.png)
+
+Let's have a peek into the transformed `dist/perform.js` file.
+
+```jsx
+'use strict'
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+})
+exports['default'] = void 0
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function')
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i]
+    descriptor.enumerable = descriptor.enumerable || false
+    descriptor.configurable = true
+    if ('value' in descriptor) descriptor.writable = true
+    Object.defineProperty(target, descriptor.key, descriptor)
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps)
+  if (staticProps) _defineProperties(Constructor, staticProps)
+  return Constructor
+}
+
+var Person = /*#__PURE__*/ (function () {
+  function Person(name) {
+    _classCallCheck(this, Person)
+
+    this.name = name
+  }
+
+  _createClass(Person, [
+    {
+      key: 'hello',
+      value: function hello() {
+        return 'Hello from '.concat(this.name)
+      },
+    },
+  ])
+
+  return Person
+})()
+
+var _default = Person
+exports['default'] = _default
+```
+
+## Method 2 : Using babel-cli
+
+Writing a script to transform JS code is doable for a trivial example like this, but as you can imagine, it will get pretty complicated very quickly as your project grows.
+
+Fortunately, Babel does come with a CLI package that provides us with a much easier interface to work with.
+
+```bash
+npm i -D @babel/cli
+```
+
+`package.json`
+
+```json
+"scripts": {
+    "build": "babel src -d dist"
+ }
+```
+
+Simply run `npm run build`. The result produced is exactly the same as in the previous method but is much easier and less error-prone.
+
+That's it for today's post. Bye for now.
+
+## References
+
+[https://stackoverflow.com/questions/44931479/compiling-vs-transpiling](https://stackoverflow.com/questions/44931479/compiling-vs-transpiling)
+
+[https://en.wikipedia.org/wiki/Source-to-source_compiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)
+
+[https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling](https://nodejs.org/docs/latest-v13.x/api/esm.html#esm_enabling)
+
+[https://babeljs.io/docs/en/babel-core](https://babeljs.io/docs/en/babel-core)

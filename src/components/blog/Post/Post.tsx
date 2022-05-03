@@ -12,7 +12,13 @@ function CenteredImage(props: any) {
         margin: '2rem 0',
       }}
     >
-      <Image objectFit="cover" width={700} height={500} {...props} />
+      <Image
+        objectFit="cover"
+        objectPosition="center"
+        width={700}
+        height={500}
+        {...props}
+      />
     </span>
   )
 }
