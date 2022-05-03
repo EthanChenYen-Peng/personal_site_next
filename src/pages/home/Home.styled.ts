@@ -122,11 +122,12 @@ export const ImageContainer = styled.div`
   img {
     border-radius: 10px;
   }
+  flex: 1;
 `
 
 export const IntroContainer = styled.div`
+  flex: 1;
   margin-left: 6rem;
-  font-size: 1.5rem;
   line-height: 2;
 
   @media (max-width: ${sizes.sm}) {
@@ -138,6 +139,11 @@ export const IntroContainer = styled.div`
 export const IntroHeader = styled.div`
   font-size: 2rem;
   font-weight: 500;
+
+  @media (max-width: ${sizes.sm}) {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
 `
 
 export const AboutHeaderContainer = styled.div`

@@ -2,10 +2,7 @@ import styled from 'styled-components'
 import { useInView } from 'react-intersection-observer'
 import { motion, useAnimation } from 'framer-motion'
 import { sizes } from '@/utils/constants'
-interface Props {
-  title: string
-  content: string
-}
+import { ITimelineItem } from './Timeline'
 
 const container = {
   hidden: {
@@ -29,13 +26,13 @@ const sideLine = {
   },
   show: {
     opacity: 1,
-    height: '250px',
+    height: '300px',
     transition: {
       duration: 0.4,
     },
   },
 }
-function TimelineItem({ title, content }: Props) {
+function TimelineItem({ title, content, excerpt }: ITimelineItem) {
   const controls = useAnimation()
   const [element, view] = useInView({ threshold: 0.5 })
 
@@ -56,7 +53,8 @@ function TimelineItem({ title, content }: Props) {
         animate={controls}
       >
         <ItemHeader>{title}</ItemHeader>
-        <Content>{content}</Content>
+        {excerpt && <Excerpt>{excerpt}</Excerpt>}
+        {content && <Content>{content}</Content>}
       </ContentContainer>
     </Container>
   )
@@ -91,6 +89,9 @@ const ContentContainer = styled(motion.div)`
   margin-left: 4rem;
   margin-top: 4rem;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @media (max-width: ${sizes.sm}) {
     margin-left: 2rem;
@@ -99,6 +100,11 @@ const ContentContainer = styled(motion.div)`
 `
 
 const Content = styled.div`
+  font-size: 1.1rem;
+  margin-top: 1rem;
+`
+
+const Excerpt = styled.div`
   font-size: 1.25rem;
   margin-top: 1.5rem;
 `

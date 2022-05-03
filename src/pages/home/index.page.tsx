@@ -20,9 +20,9 @@ const Home: NextPage = () => {
     <Container>
       <HeroContainer>
         <h2>Hi there,</h2>
-        <h2>I am Ethan</h2>
+        <h2>I&apos;m Ethan,</h2>
         <h2>
-          I am a
+          a
           <Highlight2>
             <Highlight>web developer</Highlight>
           </Highlight2>
@@ -39,8 +39,12 @@ const Home: NextPage = () => {
           />
         </ImageContainer>
         <IntroContainer>
-          <IntroHeader>My name is Yen Peng (Ethan)</IntroHeader>I am a web
-          developer, ...
+          <IntroHeader>My name is Yen Peng (Ethan)</IntroHeader>
+          I&apos;m a web developer primarily working in Javascript and Ruby on
+          Rails. <br />
+          I graduated from Melbourne Uni with a Master in Data Science, during
+          which I found interest in programming and web development. <br />
+          I&apos;m currently in transition to become more frontend focus.
         </IntroContainer>
       </AboutContainer>
 
