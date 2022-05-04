@@ -4,7 +4,7 @@ interface IWrapper {
   open: boolean
 }
 
-const rotateAngle = '33deg'
+const rotateAngle = '32deg'
 export const Wrapper = styled.div<IWrapper>`
   position: relative;
   width: 33px;
