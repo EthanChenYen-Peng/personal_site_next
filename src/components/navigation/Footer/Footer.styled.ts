@@ -20,7 +20,8 @@ export const Container = styled.footer`
 export const SocialLinksContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 5rem;
+  flex-wrap: wrap;
+  gap: 3rem;
   svg {
     color: var(--secondary-color);
     height: 2rem;
@@ -34,6 +35,7 @@ export const SocialLinksContainer = styled.div`
 
   @media (max-width: ${sizes.sm}) {
     margin-bottom: 2rem;
+    gap: 2.5rem;
     & > svg {
       height: 1.75rem;
       width: 1.75rem;
