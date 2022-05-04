@@ -9,7 +9,6 @@ export const Container = styled.footer`
   justify-content: space-between;
   align-items: center;
   padding: 0 8rem;
-  font-size: 1.25rem;
   @media (max-width: ${sizes.sm}) {
     flex-direction: column-reverse;
     justify-content: center;
@@ -22,6 +21,7 @@ export const SocialLinksContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 3rem;
+  font-size: 1.25rem;
   svg {
     color: var(--secondary-color);
     height: 2rem;

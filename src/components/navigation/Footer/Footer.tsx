@@ -3,7 +3,7 @@ import { Facebook, GitHub, Instagram, Linkedin } from 'react-feather'
 function Footer() {
   return (
     <Container>
-      © Yen-Peng Chen {new Date().getFullYear()}
+      © Yen-Peng Chen {new Date().getFullYear()} built with Next JS
       <SocialLinksContainer>
         <a
           href="https://github.com/EthanChenYen-Peng"
