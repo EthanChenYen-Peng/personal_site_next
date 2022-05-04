@@ -12,7 +12,7 @@ export const Wrapper = styled.div<{ open: boolean }>`
     height: 100%;
     right: 0;
     bottom: 0;
-    transform: ${(props) => (props.open ? '' : 'translateX(300px)')};
+    transform: ${(props) => (props.open ? '' : `translateX(${sizes.sm})`)};
     transition: transform 0.5s;
 
     display: flex;
@@ -35,7 +35,7 @@ export const Overlay = styled.div<{ open: boolean }>`
     bottom: 0;
     left: 0;
     right: 0;
-    transform: ${(props) => (props.open ? '' : 'translateX(600px)')};
+    transform: ${(props) => (props.open ? '' : `translateX(${sizes.sm})`)};
     transition: transform 0.7s;
   }
 `
