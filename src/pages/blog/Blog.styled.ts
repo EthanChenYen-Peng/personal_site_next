@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { sizes } from '@/utils/constants'
 
 export const Container = styled.div`
-  width: 45%;
+  width: 55%;
   padding: 2rem;
   border-radius: 10px;
   color: #ced4da;
