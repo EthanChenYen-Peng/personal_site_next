@@ -1,0 +1,237 @@
+---
+title: 'Painless developement setup for React using Parcel (Part 1)'
+excerpt: 'A minimum React setup to get up and running'
+created: 2022-05-09
+tags:
+  - Javascript
+  - Tooling
+image: /images/react-development-setup-part1/cover3.png
+---
+
+# Painless developement setup for React using Parcel (Part 1)
+
+![Cover](/images/react-development-setup-part1/cover3.png)
+
+Configuring a frontend development setup can be very daunting for a beginner. There are simply too many concepts to understand besides Javascript, CSS and HTML:
+
+- Which bundler to choose?
+- Why do we need to transpile our code?
+- What linting rules should I apply?
+- What even is a linter?
+
+This blog series is about building a setup with a minimum amount of configuration for React using Parcel. Parcel is an opinioned Javascript bundler that brands itself as a _zero config build tool_.
+
+### Project setup
+
+[Source code for demo: https://github.com/EthanChenYen-Peng/parcel-react-setup](https://github.com/EthanChenYen-Peng/parcel-react-setup)
+
+```shell
+mkdir parcel-react-setup
+cd parcel-react-setup
+npm init -y
+git init
+touch .gitignore
+```
+
+`.gitignore`
+
+```txt
+node_modules/
+dist/
+.parcel-cache
+```
+
+### Install Parcel
+
+Install Parcel as dev dependency
+
+```shell
+npm i -D parcel
+```
+
+Let's try it out. We first create a `src/index.html` file, which sources some CSS (`src/style.css`) and Javascript(`src/index.js`) see if work.
+
+`src/index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
+```
+
+`src/style.css`
+
+```css
+#root {
+  color: blue;
+}
+```
+
+`src/index.js`
+
+```js
+const root = document.createElement('div')
+root.id = 'root'
+root.textContent = 'Inserted by JS'
+document.body.appendChild(root)
+```
+
+Start our development server using `npx parcel src/index.html`. Here we are instructing Parcel to use `src/index.html` as our entry point. For more general syntax, you can refer to [here](https://parceljs.org/features/targets/#%24-parcel-%3Centries%3E)
+
+![](/images/react-development-setup-part1/inserted-by-js.png)
+
+It works, both CSS and Javascript are sourced in correctly.
+
+Side note:
+`parcel` is a command-line interface provided by the Parcel package when we installed it as a development dependency. It is just a script file written in NodeJS file and can be found in `<project_dir>/node_modules/.bin/parcel`. In other words, you can start the development server using the command `./node_modules/.bin/parcel src/index.html`. However, using `npx` (Node package running) is shorter and is what you will find in documentation and tutorials.
+
+> Running npx commandname automatically finds the correct reference of the command inside the node_modules folder of a project, without needing to know the exact path, and without requiring the package to be installed globally and in the user's path.
+> https://nodejs.dev/learn/the-npx-nodejs-package-runner
+
+Having to type`npx parcel src/index.html` each time we start a development server can be time-consuming and error-prone. Fortunately, we can leverage [**NPM script**](https://docs.npmjs.com/cli/v8/using-npm/scripts), to make our command more declarative.
+
+```json
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+  },
+```
+
+For more information about **NPM script** I recommend reading this blog post
+[Mastering NPM Scripts](https://dev.to/paulasantamaria/mastering-npm-scripts-2chd).
+
+To start a development server, simply run `npm run start`. Note: Parcel also provides another way for specifying the entry point using `source`, which offers two major advantages:
+
+1. It accepts an array and can be helpful in the case of having multiple entry points.
+2. We don't have to duplicate the entry points when running the production build setup.
+
+```json
+  "source": ["src/index.html"],
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+```
+
+### Setup React
+
+If you have experience with setting up a React project using **Webpack**, then you must be somewhat familiar with **Babel**, a Javascript transpiler that transpile modern Javascript you wrote into versions that can be understood by older browsers. To use the modern Javascript syntax, you would typically need to install `@babel/preset-env`. In addition to that, in order to use `JSX` in react, you would need to install `@babel/preset-react` as well.
+
+Fortunately, Parcel saves us from all these troubles by providing a built-in transpiler with functionalities equivalent to `@babel/preset-env` and `@babel/preset-react`.
+https://parceljs.org/languages/javascript/#default-presets
+
+Therefore, to use React, we simply install the dependencies.
+
+```shell
+npm i react react-dom
+```
+
+Add a container `div` for our React app in our `index.html`. Notice we also change the file extension to `jsx` for our Javascript entry file.
+`index.html`
+
+```html
+<body>
+  <div id="app"></div>
+  <script type="module" src="index.jsx"></script>
+</body>
+```
+
+Rename our Javascript entry point from `src/index.js` to `src/index.jsx`.
+
+```jsx
+import { createRoot } from 'react-dom/client'
+
+function App() {
+  return <div>Hello from React</div>
+}
+
+const container = document.querySelector('#root')
+const root = createRoot(container)
+
+root.render(<App />)
+```
+
+That's it. That is everything we need to get up and running with React.🤯
+
+To appreciate how much Parcel is doing behind the scene, let's compare it to a basic setup using Webpack.
+
+`webpack.config.json`
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  entry: path.resolve(__dirname, './src/index.jsx'),
+  module: {
+    rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  output: {
+    path: path.resolve(__dirname, './build'),
+    filename: 'bundle.js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/index.html'),
+    }),
+  ],
+  mode: 'development',
+  devtool: 'cheap-module-source-map',
+}
+```
+
+And the development dependencies it required.
+
+```json
+  "devDependencies": {
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+```
+
+As can seem, the configuration file in **Webpack** tends to be very explicit. In **Webpack**, everything is treated as a module, and it, by default, can only understand JavaScript and JSON file. To process file types other than these two, a _loader_ is required. Here, we use
+
+- `css-loader` to enable Webpack to load CSS.
+- `style-loader` to inject CSS into the output HTML.
+- `babel-loader` to use _Babel_ to transpile modern Javascript and JSX into an older version; it will source config from a configuration file ie (`.babelrc.json`).
+
+```json
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
+```
+
+### Conclusion
+
+Parcel seems to be an excellent bundler for beginners to start with. Its out-of-box functionality gives it a surprisingly low barrier of entry for people beginning web development. This is very important as there are already simply too many concepts to understand besides the topic of asset bundling. Spending too much time digression on bundler configuration might not be time well spent.
+
+In the next post, I'll set up the linter and code formatter, which are crucial for ensuring code consistency and best practices.
+
+Bye for now.

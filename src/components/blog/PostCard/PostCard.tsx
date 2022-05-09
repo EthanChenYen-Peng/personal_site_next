@@ -43,6 +43,7 @@ function PostCard({ post, linkTo }: Props) {
           width={600}
           height={400}
           alt={post.title}
+          quality={100}
         />
       </Container>
     </Link>
