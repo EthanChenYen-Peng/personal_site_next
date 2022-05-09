@@ -21,8 +21,10 @@ export const getAllPosts = (postType: PostType = PostType.BLOG) => {
     .map((slug) => getPostFromSlug(slug))
     .filter((post: Post) => post.meta.type === postType)
     .sort((a, b) => {
-      if (a.meta.date > b.meta.date) return 1
-      if (a.meta.date < b.meta.date) return -1
+      const aStr = new Date(a.meta.date)
+      const bStr = new Date(b.meta.date)
+      if (aStr > bStr) return 1
+      if (aStr < bStr) return -1
       return 0
     })
     .reverse()
