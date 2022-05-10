@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo'
 import { Wrapper, StyledHeader } from './Projects.styled'
 import { getAllPosts, PostMeta, PostType } from '@/api/posts'
 import PostCard from '@/components/blog/PostCard'
@@ -8,6 +9,7 @@ interface Props {
 function Projects({ posts }: Props) {
   return (
     <Wrapper>
+      <NextSeo title="Projects" />
       <StyledHeader>Porfolio Projects</StyledHeader>
       {posts.map((post) => (
         <PostCard

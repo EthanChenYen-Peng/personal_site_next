@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo'
 import type { GetStaticProps, GetStaticPaths } from 'next'
 import { getSlugs } from '@/api/posts'
 import 'highlight.js/styles/hybrid.css'
@@ -11,6 +12,7 @@ interface Props {
 export default function PostShow({ post }: Props) {
   return (
     <Container>
+      <NextSeo title={post.meta.title} />
       <Post post={post} />
     </Container>
   )

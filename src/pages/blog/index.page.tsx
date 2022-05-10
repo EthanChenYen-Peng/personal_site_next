@@ -1,13 +1,14 @@
+import { NextSeo } from 'next-seo'
 import { getAllPosts, PostMeta } from '@/api/posts'
-import { Wrapper, StyledHeader } from '../projects/Projects.styled'
 import PostCard from '@/components/blog/PostCard'
-
+import { StyledHeader, Wrapper } from '../projects/Projects.styled'
 interface Props {
   posts: PostMeta[]
 }
 function BlogIndex({ posts }: Props) {
   return (
     <Wrapper>
+      <NextSeo title="Blog" />
       <StyledHeader>Blog</StyledHeader>
       {posts.map((post) => (
         <PostCard post={post} key={post.slug} linkTo={`/blog/${post.slug}`} />

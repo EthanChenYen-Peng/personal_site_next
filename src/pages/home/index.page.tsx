@@ -14,10 +14,12 @@ import {
   Highlight2,
 } from './Home.styled'
 import Timeline from '@/components/timeline'
+import { NextSeo } from 'next-seo'
 
 const Home: NextPage = () => {
   return (
     <Container>
+      <NextSeo title="Home" />
       <HeroContainer>
         <h2>Hi there,</h2>
         <h2>I&apos;m Ethan,</h2>
