@@ -12,6 +12,7 @@
     "lint-staged": "lint-staged"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.1",
     "framer-motion": "^6.3.3",
     "glob": "^7.2.0",
     "gray-matter": "^4.0.3",

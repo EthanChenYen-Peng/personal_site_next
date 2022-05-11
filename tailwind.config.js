@@ -4,7 +4,18 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#13292A',
+        secondary: '#ECECEC',
+        darkgrayblue: {
+          200: '#576C6E',
+        },
+      },
+      fontFamily: {
+        worksans: 'Work Sans',
+      },
+    },
   },
   plugins: [require('@tailwindcss/typography')],
 }
