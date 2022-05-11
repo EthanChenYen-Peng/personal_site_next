@@ -1,12 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {
-  Container,
-  ContentContainer,
-  ContentHeader,
-  ContentExcerpt,
-  ContentLink,
-} from './PostCard.styled'
 import { PostMeta } from '@/api/posts'
 import { MouseEvent } from 'react'
 
@@ -23,20 +16,23 @@ function PostCard({ post, linkTo }: Props) {
   }
   return (
     <Link href={linkTo} passHref>
-      <Container>
-        <ContentContainer>
-          <ContentHeader>{post.title}</ContentHeader>
-          <ContentExcerpt>{post.excerpt}</ContentExcerpt>
+      <div className="duration-400 my-12 flex cursor-pointer flex-col-reverse justify-between gap-5 rounded-xl bg-primary p-8 text-secondary transition-transform hover:scale-105 lg:flex-row">
+        <div className="flex flex-col items-start justify-between gap-5 lg:w-1/2">
+          <h2 className="text-3xl lg:text-4xl">{post.title}</h2>
+          <p className="text-2xl">{post.excerpt}</p>
           {post.projectUrl ? (
-            <ContentLink onClick={handleProjectLinkClick}>
+            <button
+              onClick={handleProjectLinkClick}
+              className="rounded-md bg-secondary py-3 px-3 font-medium text-primary transition-transform hover:scale-105"
+            >
               <Link href={post.projectUrl}>
                 <a target="_blank">View Project</a>
               </Link>
-            </ContentLink>
+            </button>
           ) : (
             <Spacer />
           )}
-        </ContentContainer>
+        </div>
         <Image
           src={post.coverImage}
           objectFit="cover"
@@ -45,7 +41,7 @@ function PostCard({ post, linkTo }: Props) {
           alt={post.title}
           quality={100}
         />
-      </Container>
+      </div>
     </Link>
   )
 }
