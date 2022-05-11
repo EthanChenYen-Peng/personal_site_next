@@ -31,7 +31,7 @@ interface Props {
 }
 export default function Post({ post }: Props) {
   return (
-    <article className="mx-auto prose-a:no-underline prose md:prose-lg lg:prose-xl">
+    <article className="prose mx-auto prose-p:break-words prose-a:break-words prose-a:no-underline prose-li:break-words md:prose-lg md:mt-20 lg:prose-xl">
       <MDXRemote {...post.source} components={componentsForMarkdownDisplay} />
     </article>
   )
