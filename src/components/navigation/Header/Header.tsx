@@ -17,7 +17,7 @@ export interface INavLink {
 }
 function DesktopNav({ navLinks }: { navLinks: INavLink[] }) {
   return (
-    <ul className="hidden gap-6 lg:flex">
+    <ul className="hidden gap-8 lg:flex">
       {navLinks.map(({ path, title }) => (
         <LinkItem path={path} title={title} key={path} />
       ))}
