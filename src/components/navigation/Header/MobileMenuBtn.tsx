@@ -1,4 +1,3 @@
-// import { X, Menu } from 'react-feather'
 import menu from '@/public/images/Menu.svg'
 
 interface Props {
@@ -8,21 +7,39 @@ interface Props {
 export default function MobileMenuBtn({ toggleMenu, isOpen }: Props) {
   return (
     <button className="z-10 h-[40px] w-[40px] lg:hidden" onClick={toggleMenu}>
-      <span
-        className={`${
-          isOpen ? 'before:rotate-[45deg]' : ''
-        } relative left-0 top-[-10px] before:absolute before:h-[2px] before:w-[25px] before:origin-left  before:bg-secondary before:content-[""]`}
-      ></span>
-      <span
-        className={`${
-          isOpen ? 'w-0' : ''
-        } relative left-0 before:absolute before:h-[2px] before:w-[25px] before:origin-left  before:bg-secondary before:content-[""]`}
-      ></span>
-      <span
-        className={`${
-          isOpen ? 'before:rotate-[-45deg]' : ''
-        } relative left-0 top-[10px] before:absolute before:h-[2px] before:w-[25px] before:origin-left  before:bg-secondary before:content-[""]`}
-      ></span>
+      <svg
+        width="40"
+        height="40"
+        viewBox="0 0 40 40"
+        xmlns="http://www.w3.org/2000/svg"
+        className="fill-primary stroke-secondary"
+      >
+        <rect width="40" height="40" />
+        <line
+          x1="5.5"
+          y1="10.5"
+          x2="34.5"
+          y2="10.5"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <line
+          x1="5.5"
+          y1="35.5"
+          x2="34.5"
+          y2="35.5"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <line
+          x1="5.5"
+          y1="22.5"
+          x2="34.5"
+          y2="22.5"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+      </svg>
     </button>
   )
 }
