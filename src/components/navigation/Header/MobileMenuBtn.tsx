@@ -1,45 +1,71 @@
-import menu from '@/public/images/Menu.svg'
+import React from 'react'
+import { motion } from 'framer-motion'
 
 interface Props {
   toggleMenu: () => void
   isOpen: boolean
 }
-export default function MobileMenuBtn({ toggleMenu, isOpen }: Props) {
-  return (
-    <button className="z-10 h-[40px] w-[40px] lg:hidden" onClick={toggleMenu}>
-      <svg
-        width="40"
-        height="40"
-        viewBox="0 0 40 40"
-        xmlns="http://www.w3.org/2000/svg"
-        className="fill-primary stroke-secondary"
+
+const Line = (props: any) => (
+  <motion.line
+    strokeWidth="3"
+    strokeLinecap="round"
+    transition={{ duration: 0.3 }}
+    {...props}
+  />
+)
+const MobileMenuBtn = React.forwardRef<HTMLButtonElement, Props>(
+  (props, ref) => {
+    return (
+      <button
+        className="z-10 h-[40px] w-[40px] lg:hidden"
+        onClick={props.toggleMenu}
+        ref={ref}
       >
-        <rect width="40" height="40" />
-        <line
-          x1="5.5"
-          y1="10.5"
-          x2="34.5"
-          y2="10.5"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-        <line
-          x1="5.5"
-          y1="35.5"
-          x2="34.5"
-          y2="35.5"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-        <line
-          x1="5.5"
-          y1="22.5"
-          x2="34.5"
-          y2="22.5"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-      </svg>
-    </button>
-  )
-}
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+          className="fill-primary stroke-secondary"
+        >
+          <Line
+            animate={props.isOpen ? 'open' : 'closed'}
+            x1="4.8"
+            y1="7.9"
+            x2="27.2"
+            y2="7.9"
+            variants={{
+              closed: {
+                rotate: '0deg',
+                originX: 0,
+              },
+              open: {
+                rotate: '45deg',
+              },
+            }}
+          />
+          <Line
+            animate={props.isOpen ? 'open' : 'closed'}
+            x1="27.2"
+            y1="23.4"
+            x2="4.8"
+            y2="23.4"
+            variants={{
+              closed: {
+                rotate: '0deg',
+                originX: 0,
+              },
+              open: {
+                rotate: '-45deg',
+              },
+            }}
+          />
+        </svg>
+      </button>
+    )
+  }
+)
+
+MobileMenuBtn.displayName = 'MobileMenuBtn'
+export default MobileMenuBtn

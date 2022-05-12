@@ -1,4 +1,3 @@
-import { X } from 'react-feather'
 import type { INavLink } from './Header'
 import Link from 'next/link'
 import { DialogOverlay, DialogContent } from '@reach/dialog'

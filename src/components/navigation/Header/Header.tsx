@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import MobileMenu from './MobileMenu'
 import MobileMenuBtn from './MobileMenuBtn'
@@ -27,6 +27,7 @@ function DesktopNav({ navLinks }: { navLinks: INavLink[] }) {
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const btnRef = useRef(null)
   const navLinks: INavLink[] = [
     { path: '/', title: 'Home' },
     { path: '/projects', title: 'Projects' },
@@ -38,7 +39,11 @@ function Header() {
         YP
       </Link>
       <DesktopNav navLinks={navLinks} />
-      <MobileMenuBtn isOpen={isOpen} toggleMenu={() => setIsOpen(!isOpen)} />
+      <MobileMenuBtn
+        ref={btnRef}
+        isOpen={isOpen}
+        toggleMenu={() => setIsOpen(!isOpen)}
+      />
       <MobileMenu
         isOpen={isOpen}
         closeMenu={() => setIsOpen(false)}
