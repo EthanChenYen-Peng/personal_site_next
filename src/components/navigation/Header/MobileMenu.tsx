@@ -67,12 +67,6 @@ export default function MobileMenu({ isOpen, closeMenu, navLinks }: Props) {
               }}
               className="flex h-full w-3/5 flex-col justify-center bg-primary text-secondary"
             >
-              <button
-                className="fixed top-[16px] right-[40px] focus:outline-none"
-                onClick={closeMenu}
-              >
-                <X className="w-full" />
-              </button>
               <ul className="flex flex-col items-start gap-12 pl-10 text-2xl">
                 {navLinks.map(({ path, title }, i) => (
                   <NavLinkItem

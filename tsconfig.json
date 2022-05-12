@@ -4,10 +4,11 @@
     "baseUrl": "./src",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/public/*": ["../public/*"],
       "@/pages/*": ["pages/*"],
       "@/utils/*": ["utils/*"],
       "@/api/*": ["api/*"],
-      "@/styles/*": ["styles/*"],
+      "@/styles/*": ["styles/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

@@ -38,7 +38,7 @@ function Header() {
         YP
       </Link>
       <DesktopNav navLinks={navLinks} />
-      <MobileMenuBtn openMenu={() => setIsOpen(true)} />
+      <MobileMenuBtn isOpen={isOpen} toggleMenu={() => setIsOpen(!isOpen)} />
       <MobileMenu
         isOpen={isOpen}
         closeMenu={() => setIsOpen(false)}
