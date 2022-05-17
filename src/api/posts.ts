@@ -29,14 +29,6 @@ export const getAllPosts = (postType: PostType = PostType.BLOG) => {
       return 0
     })
     .reverse()
-  console.log(
-    posts.map((post) => {
-      return {
-        created: post.meta.createdAt,
-        title: post.meta.title,
-      }
-    })
-  )
   return posts
 }
 
