@@ -4,7 +4,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import Image from 'next/image'
 
 function Factory(imageSizes: ImageSize[]) {
-  return function CenteredImage(props: { src: string; alt: string }) {
+  return function CenteredImage(props: any) {
     const correctImageSize: ImageSize | undefined = imageSizes.find(
       ({ image }) => image.replace('public', '') === props.src
     )
