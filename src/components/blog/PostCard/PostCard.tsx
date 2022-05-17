@@ -18,7 +18,7 @@ function PostCard({ post, linkTo }: Props) {
     <Link href={linkTo} passHref>
       <div className="duration-400 my-12 flex cursor-pointer flex-col-reverse justify-between gap-5 rounded-xl bg-primary p-8 text-secondary transition-transform hover:scale-105 lg:flex-row">
         <div className="flex flex-col items-start justify-between gap-5 lg:w-1/2">
-          <h2 className="text-3xl lg:text-4xl">{post.title}</h2>
+          <h2 className="text-3xl font-semibold lg:text-3xl">{post.title}</h2>
           <p className="text-2xl">{post.excerpt}</p>
           {post.projectUrl ? (
             <button
@@ -35,8 +35,8 @@ function PostCard({ post, linkTo }: Props) {
         </div>
         <Image
           src={post.coverImage}
-          objectFit="cover"
-          width={600}
+          objectFit="contain"
+          width={550}
           height={400}
           alt={post.title}
           quality={100}
