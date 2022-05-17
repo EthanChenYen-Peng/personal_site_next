@@ -22,13 +22,21 @@ export const getAllPosts = (postType: PostType = PostType.BLOG) => {
     .map((slug) => getPostFromSlug(slug))
     .filter((post: Post) => post.meta.type === postType)
     .sort((a, b) => {
-      const aStr = new Date(a.meta.date)
-      const bStr = new Date(b.meta.date)
+      const aStr = new Date(a.meta.createdAt)
+      const bStr = new Date(b.meta.createdAt)
       if (aStr > bStr) return 1
       if (aStr < bStr) return -1
       return 0
     })
     .reverse()
+  console.log(
+    posts.map((post) => {
+      return {
+        created: post.meta.createdAt,
+        title: post.meta.title,
+      }
+    })
+  )
   return posts
 }
 
@@ -46,7 +54,7 @@ export interface PostMeta {
   slug: string
   title: string
   tags: string[]
-  date: string
+  createdAt: string
   coverImage: string
   projectUrl?: string
   type: PostType
@@ -64,7 +72,7 @@ export const getPostFromSlug = (slug: string): Post => {
       excerpt: data.excerpt ?? '',
       title: data.title ?? slug,
       tags: (data.tags ?? []).sort(),
-      date: (data.date ?? new Date()).toString(),
+      createdAt: (data.created ?? new Date()).toString(),
       coverImage: data.image,
       projectUrl: data.project_url ?? '',
       type: data.type ?? PostType.BLOG,

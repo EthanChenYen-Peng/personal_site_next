@@ -1,14 +1,14 @@
 ---
 title: 'Painless development setup for React Part 2: Linting & Formatting'
 excerpt: 'A minimum React setup to get up and running'
-date: 2022-05-17
+created: 2022-05-17
 tags:
   - Javascript
   - Tooling
 image: /images/react-development-setup-part2/cover.png
 ---
 
-# React Setup Part 2 (Linter and formatter)
+# Painless development setup for React Part 2: Linting & Formatting
 
 ![Cover](/images/react-development-setup-part2/cover.png)
 
@@ -182,7 +182,7 @@ The editor shows **Parsing error**.
 ![Parser error](/images/react-development-setup-part2/eslint-parser-error.png)
 And instead of giving as linting error it actually break.
 ![ESLint break](/images/react-development-setup-part2/eslint-break.png)
-This is because ESLint cannot parse our code. By defaul, ESLint expectes ES5 syntax. And `let` and `const` are part of the ES6 syntax.
+This is because ESLint cannot parse our code. By default, ESLint expects ES5 syntax. And `let` and `const` are part of the ES6 syntax.
 https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options
 
 To fix that, we have to tell ESLint the version of Javascript we want it to support by setting the `parserOption`.

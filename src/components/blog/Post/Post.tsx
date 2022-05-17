@@ -40,8 +40,11 @@ interface Props {
   imageSizes: ImageSize[]
 }
 export default function Post({ post, imageSizes }: Props) {
+  const date = new Date(post.meta.createdAt)
+
   return (
     <article className="prose mx-auto prose-p:break-words prose-a:break-words prose-a:no-underline prose-li:break-words md:prose-lg md:mt-20 lg:prose-xl">
+      <div className="my-2">Published on: {date.toLocaleDateString()}</div>
       <MDXRemote {...post.source} components={{ img: Factory(imageSizes) }} />
     </article>
   )
