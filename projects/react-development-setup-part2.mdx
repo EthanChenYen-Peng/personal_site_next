@@ -91,7 +91,7 @@ f()
 To run ESLint against our bad code, let's run `npx src/badcode.js`
 
 The result is _nothing_. No warning or error message.
-![](/images/react-development-setup-part2/2022-05-12-18-42-36.png)
+![ESLint no response](/images/react-development-setup-part2/ESLint-no-response.png)
 Even though to have installed ESlint, we have not told ESlint what [linting rules](https://eslint.org/docs/rules/) we want to use.
 By default, no rules apply.
 
@@ -105,7 +105,7 @@ Let's configure ESLint to check for unsed variables.
 }
 ```
 
-![](/images/react-development-setup-part2/2022-05-13-20-52-06.png)
+![Linting error](/images/react-development-setup-part2/linting-error.png)
 Now ESLint is shouting at us that our code violates the `no-unsed-vars` we defined in the config file.
 
 The number of rules can be overwhelming and impractical to configure it one by one. Fortunately, there are many pre-existing configurations presets for us to use directly, `eslint:recommended` is one of them and provides a good starting point.
@@ -129,11 +129,11 @@ Notice that despite the errors for unused variables, it also reports other error
 Side note:
 If you are using VSCode, I recommend installing [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint). Once you enable the extension, there will be a red squiggly line underneath the parts that violates the rules.
 
-![](/images/react-development-setup-part2/2022-05-16-20-17-09.png)
+![VSCode ESLint error](/images/react-development-setup-part2/vscode-eslint-error.png)
 
 Tip:
 If you prefer not to be distracted by the pop-up menu when you hover, you can disable the default setting by opening the `setting.json` file.
-![](/images/react-development-setup-part2/2022-05-16-19-11-27.png)
+![Tip: Open VSCode settings](/images/react-development-setup-part2/open-vscode-settings.png)
 
 ```json
 {
@@ -143,7 +143,7 @@ If you prefer not to be distracted by the pop-up menu when you hover, you can di
 ```
 
 And map your key preferred key binding to trigger the pop-up.
-![](/images/react-development-setup-part2/2022-05-16-20-18-43.png)
+![Tip: Open VSCode keybinding settings](/images/react-development-setup-part2/open-vscode-keybinding-settings.png)
 `keybindings.json`
 
 ```json
@@ -157,7 +157,7 @@ And map your key preferred key binding to trigger the pop-up.
 ### Specifying environment and `parserOptions`
 
 One thing that might surprise you is that ESLint complains about `console` not existing.
-![](/images/react-development-setup-part2/2022-05-16-20-37-11.png)
+![console not found](/images/react-development-setup-part2/console-not-found.png)
 
 ESLint does not have any assumption on the environment your code is running in and thus does not know what global variables shall be available.
 Since our code will be running in the browser, let's tell ESLint.
@@ -172,16 +172,16 @@ Since our code will be running in the browser, let's tell ESLint.
 ```
 
 Now the error is gone.
-![](/images/react-development-setup-part2/2022-05-16-20-50-53.png)
+![Error fiexed](/images/react-development-setup-part2/fix-error.png)
 
 https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
 
 Now suppose are want to use syntax in modern JS like `const` and `let`.
 
 The editor shows **Parsing error**.
-![](/images/react-development-setup-part2/2022-05-16-20-58-19.png)
+![Parser error](/images/react-development-setup-part2/eslint-parser-error.png)
 And instead of giving as linting error it actually break.
-![](/images/react-development-setup-part2/2022-05-16-20-59-23.png)
+![ESLint break](/images/react-development-setup-part2/eslint-break.png)
 This is because ESLint cannot parse our code. By defaul, ESLint expectes ES5 syntax. And `let` and `const` are part of the ES6 syntax.
 https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options
 
@@ -202,7 +202,7 @@ To fix that, we have to tell ESLint the version of Javascript we want it to supp
 ```
 
 Now ESLint should be working as expected.
-![](/images/react-development-setup-part2/2022-05-16-21-12-52.png)
+![Back no normal after fixing parser error](/images/react-development-setup-part2/fix-parser-error.png)
 
 Let's also configure ESLint to support global variables in ES6; these include things like `Promise`.
 
