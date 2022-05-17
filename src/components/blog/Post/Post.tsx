@@ -1,38 +1,48 @@
+import type { ImageSize } from '@/api/posts'
 import { MDXPost } from '@/utils/mdx'
 import { MDXRemote } from 'next-mdx-remote'
 import Image from 'next/image'
 
-function CenteredImage(props: any) {
-  return (
-    <span
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        margin: '2rem 0',
-      }}
-    >
-      <Image
-        objectFit="contain"
-        objectPosition="center"
-        width={800}
-        height={500}
-        quality={100}
-        {...props}
-      />
-    </span>
-  )
+function Factory(imageSizes: ImageSize[]) {
+  return function CenteredImage(props: { src: string; alt: string }) {
+    const correctImageSize: ImageSize | undefined = imageSizes.find(
+      ({ image }) => image.replace('public', '') === props.src
+    )
+
+    const width = correctImageSize?.width || '600px'
+    const height = correctImageSize?.height || '400px'
+    return (
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '0.5rem 0',
+        }}
+      >
+        <Image
+          objectFit="contain"
+          width={width}
+          height={height}
+          quality={100}
+          src={props.src}
+          alt={props.alt}
+        />
+      </span>
+    )
+  }
 }
-const componentsForMarkdownDisplay = {
-  img: CenteredImage,
-}
+// const componentsForMarkdownDisplay = {
+//   img: ,
+// }
 
 interface Props {
   post: MDXPost
+  imageSizes: ImageSize[]
 }
-export default function Post({ post }: Props) {
+export default function Post({ post, imageSizes }: Props) {
   return (
     <article className="prose mx-auto prose-p:break-words prose-a:break-words prose-a:no-underline prose-li:break-words md:prose-lg md:mt-20 lg:prose-xl">
-      <MDXRemote {...post.source} components={componentsForMarkdownDisplay} />
+      <MDXRemote {...post.source} components={{ img: Factory(imageSizes) }} />
     </article>
   )
 }

@@ -2,6 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import { sync } from 'glob'
 import matter from 'gray-matter'
+import sizeOf from 'image-size'
 
 const POSTS_PATH = path.join(process.cwd(), 'projects')
 
@@ -69,4 +70,23 @@ export const getPostFromSlug = (slug: string): Post => {
       type: data.type ?? PostType.BLOG,
     },
   }
+}
+
+export type ImageSize = {
+  height: number
+  width: number
+  image: string
+}
+export const getBlogImageSizes = (slug: string): ImageSize[] => {
+  const imagePath = path.join('public/images', slug)
+
+  const images = sync(`${imagePath}/*.{png,jpg,svg}`)
+
+  return images.map((image) => {
+    const imageSize = sizeOf(image) as { height: number; width: number }
+    return {
+      image,
+      ...imageSize,
+    }
+  })
 }
