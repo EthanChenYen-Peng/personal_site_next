@@ -5,11 +5,7 @@ function Footer() {
     <Container>
       © Yen-Peng Chen {new Date().getFullYear()} built with Next JS
       <SocialLinksContainer>
-        <a
-          href="https://github.com/EthanChenYen-Peng"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href="https://github.com/ypcethan" target="_blank" rel="noreferrer">
           <GitHub />
         </a>
         <a
