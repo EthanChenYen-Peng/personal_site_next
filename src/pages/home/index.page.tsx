@@ -50,7 +50,6 @@ const Home: NextPage = () => {
             Rails. <br />
             I graduated from Melbourne Uni with a Master in Data Science, during
             which I found interest in programming and web development. <br />
-            I&apos;m currently in transition to become more frontend focus.
           </div>
         </div>
       </div>
